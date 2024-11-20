@@ -1,36 +1,38 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Welcome to Scicalc
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Ease PMx calculations with scicalc
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/scicalc.png
   actions:
-    - text: Example Guide
+    - text: Scicalc User Guide
       link: /guides/example/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Explore the Scicalc repository
+      link: https://github.com/a2-ai/scicalc
       icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Scicalc Highlights
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="File Manipulations" icon="document">
+		<a href='/reference/file_manipulations/reading/read_file_with_hash'>Functions for Reading and writing data</a>
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Demographic Calculations" icon="seti:csv">
+		<a href='/reference/data_functions/demographics/is_asian'>Functions for working with demographic data</a>
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Vitals Calculations" icon="heart">
+		<a href='/reference/data_functions/vitals/bbmi'>Functions for working with vitals data</a>
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Statistical Calculations" icon="information">
+		<a href='/reference/stat_functions/geom_mean'>Functions for calculating statistics</a>
+	</Card>
+	<Card title='Lab Unit Checks' icon='seti:todo'>
+		<a href='/reference/unit_functions/check_for_unique_units'>Functions for checking units</a>
 	</Card>
 </CardGrid>
