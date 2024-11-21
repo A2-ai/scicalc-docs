@@ -10,12 +10,15 @@ Calculates the body surface area (bsa) based on subject weight and height using 
 - `height`: subject heigh in $\text{cm}$
 
 ## Equation
-Using $W$ for weight, and $H$ for height:
+Using 
+- $W$ for Weight
+- $H$ for height
 
 $$
 BSA = \sqrt{ \frac{W \cdot H}{3600} }
 $$
 
+## Code
 ```r
 bsa <- sqrt(height * weight / 3600)
 ```

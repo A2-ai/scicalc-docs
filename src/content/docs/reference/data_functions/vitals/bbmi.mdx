@@ -10,11 +10,15 @@ Calculates the baseline body mass index (bbmi) based on subject weight and heigh
 - `height`: subject heigh in $\text{cm}$
 
 ## Equation
-Using $W$ as weight, and $H$ as height, `bbmi` is calculated as:
+Using 
+- $W$ as weight
+- $H$ as height
 
 $$
 BBMI = \frac{W}{(H/100)^2}
 $$
+
+## Code
 ```r
 bbmi <- weight/((height/100)^2)
 ```

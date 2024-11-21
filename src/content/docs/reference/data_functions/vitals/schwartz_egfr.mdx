@@ -2,3 +2,27 @@
 title: schwartz_egfr
 pagefind: true
 ---
+
+Calculates eGFR based on Schwartz' equation
+
+## Arguments
+- `height` - Subject height $\text{cm}$
+- `creat` - Subject serum creatinine levels $\text{mg/dL}$
+
+## Equation
+Using:
+- $S_{cr}$ for serum creatinine levels
+- $H$ for height
+
+$$
+eGFR = 0.413 \frac{H}{S_{cr}}
+$$
+
+## Code
+
+```r
+egfr <- 0.413 * height / creat
+```
+
+## Units
+This gives $\text{eGFR}$ in units of $\frac{\text{mL}}{\text{min} \cdot 1.73\text{m}^2}$
