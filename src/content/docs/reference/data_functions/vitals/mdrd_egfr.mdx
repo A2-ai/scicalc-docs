@@ -2,3 +2,37 @@
 title: mdrd_egfr
 pagefind: true
 ---
+
+Calculates the eGFR using the Modification of Diet in Renal Disease (MDRD) equation
+
+## Arguments
+- `sexf` - Boolean, `TRUE` if subject is female
+- `raceb` - Boolean, `TRUE` if subject is black
+- `age` - Subject age $\text{year}$
+- `creat` - Subject serum creatinine levels $\text{mg/dL}$
+
+## Equation
+Using:
+- $S_{cr}$ for serum creatinine levels
+- $A$ for age
+- $ F = \begin{cases} 1 & \text{if sexf is True}\\ 0 & \text{otherwise} \end{cases}$
+- $ B = \begin{cases} 1 & \text{if raceb is True}\\ 0 & \text{otherwise} \end{cases}$
+
+$$
+eGFR = 175 \cdot S_{cr}^{-1.154} \cdot A^{-0.203} \cdot 0.742^F \cdot 1.212^B
+$$
+
+## Code
+```r
+  sex_mult <- dplyr::if_else(sexf, 0.742, 1)
+  race_mult <- dplyr::if_else(raceb, 1.212, 1)
+
+  egfr <- 175 *
+    creat ^ -1.154 *
+    age ^ -0.203 *
+    sex_mult *
+    race_mult
+```
+
+## Units
+This gives $\text{eGFR}$ in units of $\frac{\text{mL}}{\text{min} \cdot 1.73\text{m}^2}$

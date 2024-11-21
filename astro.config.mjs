@@ -100,6 +100,7 @@ export default defineConfig({
 												"reference/data_functions/vitals/egfr",
 												"reference/data_functions/vitals/ckdepi_2009_egfr",
 												"reference/data_functions/vitals/ckdepi_2021_egfr",
+												"reference/data_functions/vitals/ckdepi_2021_egfr_cystatin",
 												"reference/data_functions/vitals/mdrd_egfr",
 												"reference/data_functions/vitals/schwartz_egfr",
 											],

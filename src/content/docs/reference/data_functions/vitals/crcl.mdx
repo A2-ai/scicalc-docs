@@ -13,19 +13,16 @@ Calculates Creatinine clearance with Cockcroft-Gault equation.
 
 ## Equation
 
-Using $A$ for Age, $W$ for Weight, $S_{cr}$ for serum Creatinine levels:
+Using 
+- $A$ for age
+- $W$ for Weight
+- $S_{cr}$ for serum Creatinine levels
+- $F = \begin{cases} 0.85 & \text{if female}, \\ 1 & \text{otherwise}\end{cases}$
 $$
-\text{crcl} = f \cdot \frac{(140 - \text{A}) W}{72 S_{cr}}
+\text{crcl} = F \cdot \frac{(140 - \text{A}) W}{72 S_{cr}}
 $$ 
-where
-$$
-f = 
-\begin{cases} 
-0.85 & \text{if female}, \\
-1 & \text{otherwise}
-\end{cases}
-$$
 
+## Code
 ```r
 sex_mult <- ifelse(sexf, 0.85, 1)
 crcl <- (140 - age) * weight / (72 * creat) * sex_mult

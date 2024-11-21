@@ -13,14 +13,15 @@ Calculates renal impairment categories based on CrCL
 $$
 \text{brfc} = 
 \begin{cases} 
-0 & \text{if crcl} \ge 90, \\
-1 & \text{if crcl} \ge 60, \\
-2 & \text{if crcl} \ge 30, \\
-3 & \text{if crcl} < 30, \\
--999 & \text{otherwise}
+    0 & \text{if crcl} \ge 90, \\
+    1 & \text{if crcl} \ge 60, \\
+    2 & \text{if crcl} \ge 30, \\
+    3 & \text{if crcl} < 30, \\
+    -999 & \text{otherwise}
 \end{cases}
 $$
 
+## Code
 ```r
 brfc <- dplyr::case_when(
     crcl >= 90 ~ 0,

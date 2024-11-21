@@ -1,0 +1,60 @@
+---
+title: ckdepi_2021_egfr_cystatin
+pagefind: true
+---
+
+Calculates the estimated Glomerular filtration rate using the CKDEPI 2021 Cystatin Equation
+
+## Arguments
+- `sexf` - Boolean, `TRUE` if subject is female
+- `age` - Subject age $\text{year}$
+- `creat` - Subject serum creatinine levels $\text{mg/dL}$
+- `cystc` - Subject cystatin C levels $\text{mg/dL}$
+
+## Equation
+Using:
+- $S_{cr}$ for serum creatinine levels
+- $S_{cys}$ for serum cystatin C levels
+- $ \kappa = \begin{cases} 0.7 & \text{if sexf is True}\\ 0.9 & \text{otherwise} \end{cases}$
+- $ \alpha = \begin{cases} -0.219 & \text{if } \text{sexf is true}\\-0.144 & \text{otherwise} \end{cases}$
+- $A$ for age
+- $ F = \begin{cases} 1 & \text{if sexf is True}\\ 0 & \text{otherwise} \end{cases}$
+
+$$
+\begin{align*}
+eGFR = &135 \cdot 
+    \min(S_{cr}/\kappa, 1)^\alpha \cdot
+    \max(S_{cr}/\kappa, 1)^{-0.544} \cdot\\
+    & \min(S_{cys}/0.8, 1)^{-0.323} \cdot
+    \max(S_{cys}/0.8, 1)^{-0.778} \cdot \\
+    & 0.9961^{A} \cdot 
+    0.963^{F}
+\end{align*}
+$$
+
+## Code
+
+```r
+  K <- dplyr::if_else(sexf, 0.7, 0.9)
+  alpha <- dplyr::if_else(sexf, -0.219, -0.144)
+  sex_mult <- dplyr::if_else(sexf, 0.963, 1)
+
+  ratio <- creat/K
+  cys_ratio <- cystc/0.8
+
+  scr_k_min <- dplyr::if_else(ratio < 1, ratio^alpha, 1)
+  scr_k_max <- dplyr::if_else(ratio > 1, ratio^-0.544, 1)
+  scys_k_min <- dplyr::if_else(cys_ratio < 1, cys_ratio^-0.323, 1)
+  scys_k_max <- dplyr::if_else(cys_ratio > 1, cys_ratio^-0.778, 1)
+
+  egfr <- 135 *
+    scr_k_min *
+    scr_k_max *
+    scys_k_min *
+    scys_k_max *
+    (0.9961^age) *
+    sex_mult
+```
+
+## Units
+This gives $\text{eGFR}$ in units of $\frac{\text{mL}}{\text{min} \cdot 1.73\text{m}^2}$
