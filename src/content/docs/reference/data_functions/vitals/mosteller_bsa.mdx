@@ -2,3 +2,22 @@
 title: mosteller_bsa
 pagefind: true
 ---
+
+Calculates the body surface area (bsa) based on subject weight and height using the Mosteller Equation.
+
+## Arguments
+- `weight`: subject weight in $\text{kg}$
+- `height`: subject heigh in $\text{cm}$
+
+## Equation
+Using $W$ for weight, and $H$ for height:
+
+$$
+BSA = \sqrt{ \frac{W \cdot H}{3600} }
+$$
+
+```r
+bsa <- sqrt(height * weight / 3600)
+```
+## Units
+This gives `bsa` in units of $\text{m}^2$

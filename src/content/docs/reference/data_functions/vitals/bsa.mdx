@@ -2,3 +2,18 @@
 title: bsa
 pagefind: true
 ---
+
+Calculates the body surface area (bsa) based on subject weight.
+
+## Arguments
+- `weight`: subject weight in $\text{kg}$
+- `height`: subject heigh in $\text{cm}$
+- `method`: Method for bsa calculation (either [dubois](/reference/data_functions/vitals/dubois_bsa) or [mosteller](/reference/data_functions/vitals/mosteller_bsa)). Default is dubois.
+
+## Equation
+The equation used is dependent on `method`
+- [`dubois`](/reference/data_functions/vitals/dubois_bsa#equation)
+- [`mosteller`](/reference/data_functions/vitals/mosteller_bsa#equation)
+
+## Units
+Both methods return `bsa` in units of $\text{m}^2$
