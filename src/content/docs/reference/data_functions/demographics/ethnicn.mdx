@@ -2,3 +2,27 @@
 title: ethnicn
 pagefind: true
 ---
+
+import { Code } from '@astrojs/starlight/components';
+
+`ethnicn` accepts character input and returns standard yspec numeric value for Ethnicity
+
+## Arguments
+- `ethnicc` - character vector of ethnicities
+
+## Returns
+- `1` - For `ethnicc = "HISPANIC OR LATINO"`
+- `0` - For `ethinicc = "NOT HISPANIC OR LATINO"`
+- `-999` - For `ethinicc = "UNKNOWN"`
+
+## Examples
+```
+> ethnicn('HISPANIC OR LATINO')
+[1] 1
+
+> ethnicn(c('HISPANIC OR LATINO', 'HISPANIC', 'LATINO', 'NOT HISPANIC OR LATINO', 'NOT HISPANIC', 'NOT LATINO'))
+[1] 1 1 1 0 0 0
+
+> ethnicn(c('HISPANIC OR LATINO', 'NOT HISPANIC OR LATINO', 'UNKNOWN', 'WHITE'))
+[1]    1    0 -999 -999
+```

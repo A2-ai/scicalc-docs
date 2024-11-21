@@ -2,3 +2,21 @@
 title: bbmi
 pagefind: true
 ---
+
+Calculates the baseline body mass index (bbmi) based on subject weight and height.
+
+## Arguments
+- `weight`: subject weight in $\text{kg}$
+- `height`: subject heigh in $\text{cm}$
+
+## Equation
+Using $W$ as weight, and $H$ as height, `bbmi` is calculated as:
+
+$$
+BBMI = \frac{W}{(H/100)^2}
+$$
+```r
+bbmi <- weight/((height/100)^2)
+```
+## Units
+This gives `bbmi` in units of $\text{kg/m}^2$

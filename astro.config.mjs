@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { starlightKatex } from 'starlight-katex';
 import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
+			plugins: [starlightKatex()],
 			title: 'scicalc',
 			social: {
 				github: 'https://github.com/a2-ai/scicalc',
@@ -137,3 +139,4 @@ export default defineConfig({
 		}),
 	],
 });
+

@@ -2,3 +2,46 @@
 title: ckdepi_2009_egfr
 pagefind: true
 ---
+
+Calculates Estimated Glomerular Filtration Rate based on Sex, Race, Age, and Creatinine levels based on the CKDEPI 2009 equation
+
+## Arguments
+- `sexf` - Boolean, `TRUE` if subject is female
+- `raceb` - Boolean, `TRUE` if subject is black
+- `age` - Subject age $\text{year}$
+- `creat` - Subject serum creatinine levels $\text{mg/dL}$
+
+## Equation
+Using $A$ for age
+
+$$
+\begin{aligned}
+    K &= 
+    \begin{cases} 
+        0.7 & \text{if } \text{sexf is true}, \\
+        0.9 & \text{otherwise},
+    \end{cases} \\
+    \alpha &= 
+    \begin{cases} 
+        -0.329 & \text{if } \text{sexf is true}, \\
+        -0.411 & \text{otherwise},
+    \end{cases} \\
+    \text{sex\_mult} &= 
+    \begin{cases} 
+        1.018 & \text{if } \text{sexf is true}, \\
+        1 & \text{otherwise},
+    \end{cases} \\
+    \text{race\_mult} &= 
+    \begin{cases} 
+        1.159 & \text{if } \text{raceb is true}, \\
+        1 & \text{otherwise},
+    \end{cases} \\
+    \text{ratio} &= \frac{\text{creat}}{K}, \\
+    \text{scr\_k} &= 
+    \begin{cases} 
+        \text{ratio}^\alpha & \text{if } \text{ratio} < 1, \\
+        \text{ratio}^{-1.209} & \text{otherwise},
+    \end{cases} \\
+    \text{eGFR} &= 141 \cdot \text{scr\_k} \cdot (0.993^{\text{age}}) \cdot \text{sex\_mult} \cdot \text{race\_mult}.
+\end{aligned}
+$$

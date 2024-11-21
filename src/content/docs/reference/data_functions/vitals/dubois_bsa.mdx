@@ -2,3 +2,22 @@
 title: dubois_bsa
 pagefind: true
 ---
+
+
+Calculates the body surface area (bsa) based on subject weight and height using the Dubois Equation.
+
+## Arguments
+- `weight`: subject weight in $\text{kg}$
+- `height`: subject heigh in $\text{cm}$
+
+## Equation
+Using $W$ for weight, and $H$ for height:
+$$
+BSA = 0.007184 \cdot W^{0.425} \cdot H^{0.725} 
+$$
+
+```r
+bsa <- (weight^0.425) * (height^0.725) * 0.007184
+```
+## Units
+This gives `bsa` in units of $\text{m}^2$
