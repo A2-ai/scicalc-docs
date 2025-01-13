@@ -2,3 +2,22 @@
 title: cv
 pagefind: true
 ---
+
+This function computes the coefficient of variation (CV) of an input data vector.
+
+## Arguments
+* `x` numeric vector to compute CV for
+* `na.rm` boolean to remove NA from data, default is `FALSE`
+
+## Returns
+* CV of `x`
+
+## Equation
+$$
+CV_x = \frac{\sigma_x}{\mu_x}
+$$
+
+## Code
+```r
+cv = (stats::sd(x, na.rm = na.rm) / mean(x, na.rm = na.rm))
+```

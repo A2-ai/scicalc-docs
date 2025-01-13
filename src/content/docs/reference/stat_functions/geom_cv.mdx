@@ -2,3 +2,26 @@
 title: geom_cv
 pagefind: true
 ---
+This function computes the coefficient of variation (CV) of an input data vector.
+
+## Arguments
+* `x` numeric vector to compute CV for
+* `na.rm` boolean to remove NA from data, default is `FALSE`
+
+## Returns
+* geometric CV of `x`
+
+## Equation
+$$
+\text{geometric }CV = \sqrt{
+    \exp{\left(
+        \text{Var} \left[ \log(x)\right]
+        \right)
+    } - 1
+}
+$$
+
+## Code
+```r
+geom_cv = sqrt(exp(stats::sd(log(x), na.rm = na.rm)**2) - 1)
+```

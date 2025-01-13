@@ -2,3 +2,30 @@
 title: geom_sd
 pagefind: true
 ---
+
+This function computes the geometric standard deviation of an input data vector.
+
+## Arguments
+* `x` numeric vector to compute geometric sd for
+* `na.rm` boolean to remove NA from data, default is `FALSE`
+
+## Returns
+* geometric sd of `x`
+
+## Equation
+$$
+\text{geometric }\sigma =
+    \exp{ \left(
+        \sqrt{
+            \text{Var} \left[ 
+                \log(x)
+            \right]
+        }
+        \right)
+    }
+$$
+
+## Code
+```r
+geom_sd = exp(stats::sd(log(x), na.rm = na.rm))
+```
