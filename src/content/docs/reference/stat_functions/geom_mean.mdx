@@ -2,3 +2,25 @@
 title: geom_mean
 pagefind: true
 ---
+This function computes the geometric mean of an input data vector.
+
+## Arguments
+* `x` numeric vector to compute CV for
+* `na.rm` boolean to remove NA from data, default is `FALSE`
+
+## Returns
+* geometric mean of `x`
+
+## Equation
+$$
+\text{geometric mean} = 
+    \exp{\left(
+        \mathbb{E}\left[ \log(x) \right]
+        \right)
+    }
+$$
+
+## Code
+```r
+geom_mean = exp(mean(log(x), na.rm = na.rm))
+```
