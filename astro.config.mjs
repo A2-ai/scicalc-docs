@@ -48,6 +48,7 @@ export default defineConfig({
 				{
 					label: 'Reference',
 					items: [
+						{ label: 'Getting Started', slug: 'reference/getting_started' },
 						{ 
 							label: 'File Manipulations', 
 							items: [
@@ -119,7 +120,7 @@ export default defineConfig({
 											],
 										},
 										{ label: "crcl", slug: "reference/data_functions/vitals/crcl" },
-										{ label: "bfrc", slug: "reference/data_functions/vitals/brfc" },
+										{ label: "brfc", slug: "reference/data_functions/vitals/brfc" },
 										{ label: "bhfc", slug: "reference/data_functions/vitals/bhfc" },
 										{ 
 											label: "egfr", 
