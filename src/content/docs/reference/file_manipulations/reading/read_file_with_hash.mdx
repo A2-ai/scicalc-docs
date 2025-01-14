@@ -10,6 +10,7 @@ This function reads in data from a supported file type and prints out the hash o
 * parquet
 * sas7bdat
 * xpt
+* xlsx/xls
 * pzfx
 
 ## Arguments
@@ -20,6 +21,7 @@ This function reads in data from a supported file type and prints out the hash o
     * `arrow::read_parquet`
     * `haven::read_sas`
     * `haven::read_xpt`
+    * `readxl::read_excel`
     * `pzfx::read_pzfx`
 
 ## Returns
@@ -29,7 +31,7 @@ This function reads in data from a supported file type and prints out the hash o
 ### Examples
 ```r
 > d <- read_file_with_hash(
-    file_path = here::here("data/source/vs.parquet"),
+    file_path = here::here("inst/extdata/data/source/vs.parquet"),
 )
 vs.parquet: 23d21f8379fd789640153e94e8e05b35
 ```
@@ -41,3 +43,10 @@ Changing which `digest` algorithm is used:
 )
 vs.parquet: bcd37664e75facbb73e883fa9ac4a6c03861dc6d9be78b66e86d6c891db867d7
 ```
+Reading in an excel file gives the data hash as well as the sheet names within the file
+```r
+> d <- read_file_with_hash(here::here("inst/extdata/data/source/test_excel.xlsx"))
+test_excel.xlsx: f665dce4222df738750216bb9cd53819
+Sheets in test_excel.xlsx: model_summary, sheet with space, empty
+```
+The default is to read the first sheet, but supplying sheet argument (either numeric or sheet name) allows you to read any sheet within the file
