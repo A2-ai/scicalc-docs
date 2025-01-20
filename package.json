@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/markdown-component": "^1.0.5",
     "@astrojs/starlight": "^0.29.2",
     "astro": "^4.16.10",
     "katex": "^0.16.11",
+    "markdown-to-jsx": "^7.7.3",
+    "marked": "^15.0.6",
     "mathjax": "^3.2.2",
     "rehype-katex": "^7.0.1",
     "rehype-mathjax": "^6.0.0",
