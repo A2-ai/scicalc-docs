@@ -3,35 +3,6 @@ title: write_file_with_hash
 pagefind: true
 ---
 
-This function writes data to a `csv` or `parquet` file.
+import { Content as EContent } from '../../../../../content/rd_docs/write_file_with_hash.md';
 
-## Arguments
-* `data`: data object (data.frame, tibble, etc) that you want to write to path
-* `path`: path to file you want to write to
-* `overwrite`: boolean to overwrite existing file. Default is `FALSE`
-* `...`: additional arguments to be used for any of the following functions:
-    * `digest::digest`
-    * `readr::read_csv`
-    * `arrow::read_parquet`
-
-## Returns
-Nothing
-Prints out path to written data and data hash
-
-## Examples
-```r
-> write_file_with_hash(
-    d, 
-    path = here::here("data/derived/test.csv")
-)
-~/Packages/scicalc/data/derived/test.csv: 11bc0131f9562b21ea75530151e77ff1
-```
-Using `blake3` hashing algorithm
-```r
-> write_file_with_hash(
-    d, 
-    path = here::here("data/derived/test.csv"),
-    algo = 'blake3'
-)
-~/Packages/scicalc/data/derived/test.csv: dd029802b92c0d4ba628be7ff0c3b26845e48d8f4f19f179d8d489b2acab50ea
-```
+<EContent />

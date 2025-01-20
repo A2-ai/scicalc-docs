@@ -3,46 +3,10 @@ title: read_file_with_hash
 pagefind: true
 ---
 
-This function reads in data from a supported file type and prints out the hash of the data.
+import { Content as EContent } from '../../../../../content/rd_docs/read_file_with_hash.md';
 
-## Supported file types
-* csv
-* parquet
-* sas7bdat
-* xpt
-* xlsx/xls
-* pzfx
+<EContent />
 
-## Arguments
-* `file_path`: path to file to ingest
-* `...`: additional arguments to be used for any of the following functions:
-    * `digest::digest`
-    * `readr::read_csv`
-    * `arrow::read_parquet`
-    * `haven::read_sas`
-    * `haven::read_xpt`
-    * `readxl::read_excel`
-    * `pzfx::read_pzfx`
-
-## Returns
-* a tibble of data within `file_path`
-* `file name: hash` is printed as well
-
-### Examples
-```r
-> d <- read_file_with_hash(
-    file_path = here::here("inst/extdata/data/source/vs.parquet"),
-)
-vs.parquet: 23d21f8379fd789640153e94e8e05b35
-```
-Changing which `digest` algorithm is used:
-```r
-> d <- read_file_with_hash(
-    file_path = here::here("inst/extdata/data/source/vs.parquet"),
-    algo = "blake3"
-)
-vs.parquet: bcd37664e75facbb73e883fa9ac4a6c03861dc6d9be78b66e86d6c891db867d7
-```
 Reading in an excel file gives the data hash as well as the sheet names within the file
 ```r
 > d <- read_file_with_hash(here::here("inst/extdata/data/source/test_excel.xlsx"))

@@ -3,46 +3,6 @@ title: read_hashed_file
 pagefind: true
 ---
 
-This function reads a file if the supplied hash matches the file's hash
+import { Content as EContent } from '../../../../../content/rd_docs/read_hashed_file.md';
 
-## Arguments
-
-* `file_path`: path to file with data you want to read
-* `hash`: hash you expect the file to have
-* `...`: additional arguments to be used for any of the following functions:
-    * `digest::digest`
-    * `readr::read_csv`
-    * `arrow::read_parquet`
-    * `haven::read_sas`
-    * `haven::read_xpt`
-    * `readxl::read_excel`
-    * `pzfx::read_pzfx`
-
-## Returns
-* a tibble of data within `file_path`
-
-## Examples
-```r
-> d <- read_hashed_file(
-    file_path = here::here("inst/extdata/data/source/vs.parquet"), 
-    hash = "23d21f8379fd789640153e94e8e05b35", 
-)
-```
-If you have the `blake3` hash for the file, but not the md5, you can supply `digest::digest`'s `algo` argument:
-```r
-d <- read_hashed_file(
-    here::here("inst/extdata/data/source/vs.parquet"),
-    hash = "bcd37664e75facbb73e883fa9ac4a6c03861dc6d9be78b66e86d6c891db867d7", 
-    algo= 'blake3'
-)
-```
-Supplying the wrong hash will not return the data, but throw an error:
-```r
-> d <- read_hashed_file(
-    here::here("inst/extdata/data/source/vs.parquet"), 
-    hash = "bcd37664e75facbb73e883fa9ac4a6c03861dc6d9be78b66e86d6c891db867d7"
-)
-Error in `read_hashed_file()`:
-! "Hash does not match file's hash!"
-Run `rlang::last_trace()` to see where the error occurred.
-```
+<EContent />
