@@ -6,3 +6,8 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/is_hispanic_or_latino.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/is_hispanic_or_latino.txt?raw';
+
+<Code code={importedCode} lang="r" title="is_hispanic_or_latino.R" />
+

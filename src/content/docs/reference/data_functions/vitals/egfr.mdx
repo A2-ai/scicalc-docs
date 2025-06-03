@@ -5,6 +5,10 @@ pagefind: true
 import { Content as EgfrContent } from '../../../../../content/rd_docs/egfr.md';
 
 <EgfrContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/egfr.txt?raw';
+
+<Code code={importedCode} lang="r" title="egfr.R" />
 
 ## Equation
 The equation used is dependent on `method`

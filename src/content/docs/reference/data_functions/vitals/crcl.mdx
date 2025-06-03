@@ -6,6 +6,11 @@ pagefind: true
 import { Content as CrclContent } from '../../../../../content/rd_docs/crcl.md';
 
 <CrclContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/crcl.txt?raw';
+
+<Code code={importedCode} lang="r" title="crcl.R" />
+
 
 ## Equation
 

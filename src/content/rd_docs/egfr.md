@@ -1,36 +1,45 @@
+## Alias
+
+egfr
+
 ## Description
 
-
- Calculates eGFR based on the method specified
+Calculates eGFR based on the method specified
 
 ## Usage
 
 ```r
-
- egfr(sexf, raceb, age, creat, cystc, height, method = "CKDEPI 2009")
-
+egfr(
+  sexf,
+  raceb,
+  age,
+  creat,
+  cystc,
+  height,
+  method = "CKDEPI 2009"
+)
 ```
+
 ## Arguments
 
-| Name   | Description |
-|--------|-------------|
-|`sexf` | a boolean representing if the patient is female.|
-|`raceb` | a boolean representing if the patient is black.|
-|`age` | the age of a patient in years.|
-|`creat` | the serum creatinine levels in mg/dL.|
-|`cystc` | the cystatin C levels in mg/L - only used in CKDEPI 2021 cystatin method|
-|`height` | the height of a patient in cm.|
-|`method` | a string specifying the method to use|
+| Name | Description |
+|------|-------------|
+| `sexf` | a boolean representing if the patient is female. |
+| `raceb` | a boolean representing if the patient is black. |
+| `age` | the age of a patient in years. |
+| `creat` | the serum creatinine levels in mg/dL. |
+| `cystc` | the cystatin C levels in mg/L - only used in CKDEPI 2021 cystatin method |
+| `height` | the height of a patient in cm. |
+| `method` | a string specifying the method to use. Available options are "CKDEPI 2009", "MDRD", "CKDEPI 2021", "Schwartz". |
+
 ## Returns
 
-
- the eGFR calculated based on method.
+the eGFR calculated based on method.
 
 ## Examples
 
 ```r
-
- e <- egfr(TRUE, TRUE, 24, 1, "CKDEPI 2009")
+e <- egfr(TRUE, TRUE, 24, 1, "CKDEPI 2009")
  
  df <- data.frame(
     "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
@@ -39,5 +48,7 @@
     "CREAT" = c(1, 1, 2, 1)
     )
  df <- dplyr::mutate(df, egfr = egfr(SEXF, RACEB, AGE, CREAT, "CKDEPI 2009"))
-
+ df
 ```
+
+

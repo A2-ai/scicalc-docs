@@ -1,0 +1,15 @@
+[1] 1 
+[1] 1 2 3 4 
+[1] 2 
+  ID AST ULNAST BILI ULNBILI BHFC  hepatic_status
+1  1  15     33  0.8     1.2 -999    Missing data
+2  2  45     33  1.0     1.2    2 Mild impairment
+3  3  28     33  2.2     1.2 -999    Missing data
+4  4  35     33  4.5     1.2    2 Mild impairment
+5  5  22     33  1.8     1.2    2 Mild impairment
+6  6  30     33  0.9     1.2 -999    Missing data 
+# A tibble: 2 × 3
+     ID baseline_category max_category
+  <int>             <dbl>        <dbl>
+1     1                 1            1
+2     2                 1            1 

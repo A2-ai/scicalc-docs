@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/mdrd_egfr.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/mdrd_egfr.txt?raw';
+
+<Code code={importedCode} lang="r" title="mdrd_egfr.R" />
 
 ## Equation
 Using:

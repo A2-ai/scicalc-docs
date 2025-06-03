@@ -1,28 +1,30 @@
+## Alias
+
+%>%
+
+## Keyword
+
+internal
+
 ## Description
 
-
- See  magrittr:: %>%  for details.
+See  magrittr:: %>%  for details.
 
 ## Usage
 
 ```r
-
- lhs %>% rhs
-
+lhs %>% rhs
 ```
+
 ## Arguments
 
-| Name   | Description |
-|--------|-------------|
-|`lhs`| A value or the magrittr placeholder.|
-|`rhs`| A function call using the magrittr semantics.|
+| Name | Description |
+|------|-------------|
+| `lhs` | A value or the magrittr placeholder. |
+| `rhs` | A function call using the magrittr semantics. |
+
 ## Returns
 
+The result of calling  rhs(lhs) .
 
- The result of calling  rhs(lhs) .
 
-## Examples
-
-```r
-
-```

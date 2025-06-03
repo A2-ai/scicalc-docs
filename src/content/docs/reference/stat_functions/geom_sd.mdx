@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../content/rd_docs/geom_sd.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/geom_sd.txt?raw';
+
+<Code code={importedCode} lang="r" title="geom_sd.R" />
 
 ## Equation
 $$

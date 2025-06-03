@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/mosteller_bsa.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/mosteller_bsa.txt?raw';
+
+<Code code={importedCode} lang="r" title="mosteller_bsa.R" />
 
 ## Equation
 Using 

@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../content/rd_docs/cv.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/cv.txt?raw';
+
+<Code code={importedCode} lang="r" title="cv.R" />
 
 ## Equation
 $$
