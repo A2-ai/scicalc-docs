@@ -1,7 +1,3 @@
-## Alias
-
-read_hashed_file
-
 ## Description
 
 Reads a file if the supplied hash matches the file's hash

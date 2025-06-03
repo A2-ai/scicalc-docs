@@ -1,7 +1,3 @@
-## Alias
-
-mosteller_bsa
-
 ## Description
 
 Calculates Body Surface Area based on Weight and Height using Mosteller equation

@@ -1,7 +1,3 @@
-## Alias
-
-bsa
-
 ## Description
 
 Calculates Body Surface Area based on Weight and Height using the method specified. Default is Dubois.

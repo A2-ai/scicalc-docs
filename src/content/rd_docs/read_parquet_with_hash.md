@@ -1,7 +1,3 @@
-## Alias
-
-read_parquet_with_hash
-
 ## Description
 
 Reads data from parquet file and prints hash of contents.

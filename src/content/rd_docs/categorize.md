@@ -1,7 +1,3 @@
-## Alias
-
-categorize
-
 ## Description
 
 Converts continuous variable into factor categories.

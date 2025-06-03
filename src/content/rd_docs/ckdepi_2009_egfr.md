@@ -1,7 +1,3 @@
-## Alias
-
-ckdepi_2009_egfr
-
 ## Description
 
 Calculates Estimated Glomerular Filtration Rate based on Sex, Race, Age, and Creatinine levels

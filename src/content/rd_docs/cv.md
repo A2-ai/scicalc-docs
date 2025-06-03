@@ -1,7 +1,3 @@
-## Alias
-
-cv
-
 ## Description
 
 Computes the coefficient of variation of input vector.

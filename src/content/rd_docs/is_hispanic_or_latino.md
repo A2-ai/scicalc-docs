@@ -1,7 +1,3 @@
-## Alias
-
-is_hispanic_or_latino
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if "Hispanic or Latino" or other

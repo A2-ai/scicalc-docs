@@ -1,7 +1,3 @@
-## Alias
-
-rfc
-
 ## Description
 
 This function categorizes renal function based on estimated glomerular filtration rate (eGFR),

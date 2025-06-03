@@ -1,7 +1,3 @@
-## Alias
-
-read_csv_with_hash
-
 ## Description
 
 Reads data from csv file and prints hash of contents.

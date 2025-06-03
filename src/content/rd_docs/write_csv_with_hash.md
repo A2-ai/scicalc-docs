@@ -1,7 +1,3 @@
-## Alias
-
-write_csv_with_hash
-
 ## Description
 
 Writes data to csv_path with na_value replacing NA values.

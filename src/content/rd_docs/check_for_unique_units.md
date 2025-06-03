@@ -1,7 +1,3 @@
-## Alias
-
-check_for_unique_units
-
 ## Description
 
 Gives a TRUE/FALSE for if the Parameters have only 1 associated unit

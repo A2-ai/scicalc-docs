@@ -1,7 +1,3 @@
-## Alias
-
-sexf
-
 ## Description
 
 Also returns numeric for single character Sex characters "F" and "M"

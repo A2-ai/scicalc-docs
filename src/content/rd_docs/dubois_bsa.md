@@ -1,7 +1,3 @@
-## Alias
-
-dubois_bsa
-
 ## Description
 
 Calculates Body Surface Area based on Weight and Height using Dubois Dubois equation

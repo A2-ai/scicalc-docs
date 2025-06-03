@@ -1,7 +1,3 @@
-## Alias
-
-geom_mean
-
 ## Description
 
 Computes the geometric mean of a vector.

@@ -1,7 +1,3 @@
-## Alias
-
-read_pzfx_with_hash
-
 ## Description
 
 Reads in table from a prism pzfx file.

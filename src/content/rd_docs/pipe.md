@@ -1,7 +1,3 @@
-## Alias
-
-%>%
-
 ## Keyword
 
 internal

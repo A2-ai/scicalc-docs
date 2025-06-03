@@ -1,7 +1,3 @@
-## Alias
-
-is_black
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if black/other also checks for "African American" and "Black or African American"

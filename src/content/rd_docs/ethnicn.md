@@ -1,7 +1,3 @@
-## Alias
-
-ethnicn
-
 ## Description
 
 Takes character input and returns standard yspec numeric value for Ethnic

@@ -1,7 +1,3 @@
-## Alias
-
-read_sas_with_hash
-
 ## Description
 
 Reads data from sas file and prints hash of contents.

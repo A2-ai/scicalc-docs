@@ -1,7 +1,3 @@
-## Alias
-
-bmi
-
 ## Description
 
 Calculates Baseline Body Mass Index based on Weight and Height

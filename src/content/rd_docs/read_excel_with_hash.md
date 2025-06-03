@@ -1,7 +1,3 @@
-## Alias
-
-read_excel_with_hash
-
 ## Description
 
 Reads data from xlsx/xls file and prints hash of contents.

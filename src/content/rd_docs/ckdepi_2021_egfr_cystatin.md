@@ -1,7 +1,3 @@
-## Alias
-
-ckdepi_2021_egfr_cystatin
-
 ## Description
 
 Calculates eGFR with CKDEPI 2021 cystatin equation

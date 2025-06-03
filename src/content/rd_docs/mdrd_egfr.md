@@ -1,7 +1,3 @@
-## Alias
-
-mdrd_egfr
-
 ## Description
 
 Modification of Diet in Renal Disease eGFR calculation

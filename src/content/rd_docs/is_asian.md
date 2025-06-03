@@ -1,7 +1,3 @@
-## Alias
-
-is_asian
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if asian/other

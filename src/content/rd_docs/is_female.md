@@ -1,7 +1,3 @@
-## Alias
-
-is_female
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if female/male

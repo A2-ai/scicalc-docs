@@ -1,7 +1,3 @@
-## Alias
-
-read_file_with_hash
-
 ## Description
 
 Reads the data from a file (csv or parquet) and prints the hash

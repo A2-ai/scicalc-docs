@@ -1,7 +1,3 @@
-## Alias
-
-geom_sd
-
 ## Description
 
 Computes the geometric standard deviation of a vector x.

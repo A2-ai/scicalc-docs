@@ -1,7 +1,3 @@
-## Alias
-
-create_dir
-
 ## Description
 
 Creates the directory if it doesn't exist

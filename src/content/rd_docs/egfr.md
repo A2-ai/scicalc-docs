@@ -1,7 +1,3 @@
-## Alias
-
-egfr
-
 ## Description
 
 Calculates eGFR based on the method specified

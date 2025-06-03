@@ -1,7 +1,3 @@
-## Alias
-
-read_xpt_with_hash
-
 ## Description
 
 Reads data from xpt file and prints hash of contents.

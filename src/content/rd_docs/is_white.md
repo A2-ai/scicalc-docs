@@ -1,7 +1,3 @@
-## Alias
-
-is_white
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if white/other

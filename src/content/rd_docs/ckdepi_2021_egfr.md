@@ -1,7 +1,3 @@
-## Alias
-
-ckdepi_2021_egfr
-
 ## Description
 
 Calculates eGFR using the CKDEPI 2021 creatinine equation

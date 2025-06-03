@@ -1,7 +1,3 @@
-## Alias
-
-write_file_with_hash
-
 ## Description
 
 Writes data to path, if directory doesn't exist it is created before file is written

@@ -1,7 +1,3 @@
-## Alias
-
-hfc
-
 ## Description
 
 This function categorizes hepatic function impairment using the National Cancer Institute

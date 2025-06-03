@@ -1,7 +1,3 @@
-## Alias
-
-geom_cv
-
 ## Description
 
 Computes the geometric CV of a vector x

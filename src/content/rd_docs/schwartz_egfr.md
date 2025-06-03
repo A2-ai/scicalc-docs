@@ -1,7 +1,3 @@
-## Alias
-
-schwartz_egfr
-
 ## Description
 
 Calculates eGFR based on Schwartz' equation

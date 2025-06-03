@@ -1,7 +1,3 @@
-## Alias
-
-crcl
-
 ## Description
 
 Calculates Creatinine clearance with Cockcroft-Gault equation

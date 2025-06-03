@@ -1,7 +1,3 @@
-## Alias
-
-get_unique_units_df
-
 ## Description
 
 Creates a dataframe with distinct parameters and units combinations

@@ -1,7 +1,3 @@
-## Alias
-
-is_other
-
 ## Description
 
 Takes character input and returns TRUE/FALSE if other/explicit race

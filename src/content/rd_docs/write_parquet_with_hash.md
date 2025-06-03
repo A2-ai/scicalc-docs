@@ -1,7 +1,3 @@
-## Alias
-
-write_parquet_with_hash
-
 ## Description
 
 Writes data to parquet_path and prints hash
