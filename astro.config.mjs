@@ -5,6 +5,7 @@ import starlight from '@astrojs/starlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
+
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
@@ -43,7 +44,7 @@ export default defineConfig({
 			customCss: [
 				'./src/styles/custom.css'
 			],
-			title: 'scicalc',
+			title: 'scicalc v0.2.0',
 			social: {
 				github: 'https://github.com/a2-ai/scicalc',
 			},
