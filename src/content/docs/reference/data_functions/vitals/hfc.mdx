@@ -1,0 +1,12 @@
+---
+title: hfc
+pagefind: true
+---
+
+import { Content as BHFCContent } from '../../../../../content/rd_docs/hfc.md';
+
+<BHFCContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/hfc.txt?raw';
+
+<Code code={importedCode} lang="r" title="hfc.R" />

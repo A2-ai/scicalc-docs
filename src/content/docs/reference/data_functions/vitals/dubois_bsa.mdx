@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/dubois_bsa.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/dubois_bsa.txt?raw';
+
+<Code code={importedCode} lang="r" title="dubois_bsa.R" />
 
 ## Equation
 Using 

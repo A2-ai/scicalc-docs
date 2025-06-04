@@ -1,33 +1,35 @@
 ## Description
 
-
- Calculates Creatinine clearance with Cockcroft-Gault equation
+Calculates Creatinine clearance with Cockcroft-Gault equation
 
 ## Usage
 
 ```r
-
- crcl(sexf, age, creat, weight)
-
+crcl(
+  sexf,
+  age,
+  creat,
+  weight
+)
 ```
+
 ## Arguments
 
-| Name   | Description |
-|--------|-------------|
-|`sexf`| bool of sex of subject. Female: True, Male: False|
-|`age`| age of subject (years)|
-|`creat`| serum creatinine levels (mg/dL)|
-|`weight`| weight of subject (kg)|
+| Name | Description |
+|------|-------------|
+| `sexf` | bool of sex of subject. Female: True, Male: False |
+| `age` | age of subject (years) |
+| `creat` | serum creatinine levels (mg/dL) |
+| `weight` | weight of subject (kg) |
+
 ## Returns
 
-
- CrCl (mL/min)
+CrCl (mL/min)
 
 ## Examples
 
 ```r
-
- crcl(FALSE, 20, 10, 70)
+crcl(FALSE, 20, 10, 70)
  
  df <- data.frame(
    "ID" = c(1, 1, 1, 1, 2, 2, 2, 2),
@@ -41,5 +43,7 @@
  df <- df %>%
    dplyr::group_by(ID) %>%
    dplyr::mutate(CRCL = crcl(is_female(SEX), AGE, CREAT, WEIGHT))
-
+ df
 ```
+
+

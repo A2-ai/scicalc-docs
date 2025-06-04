@@ -1,0 +1,15 @@
+---
+title: rfc
+pagefind: true
+---
+
+import { Content as BRFCContent } from '../../../../../content/rd_docs/rfc.md';
+
+<BRFCContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/rfc.txt?raw';
+
+<Code code={importedCode} lang="r" title="rfc.R" />
+
+## Units
+The renal impairment categories are unitless.

@@ -5,6 +5,7 @@ import starlight from '@astrojs/starlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
+
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
@@ -40,7 +41,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			plugins: [starlightKatex()],
-			title: 'scicalc',
+			customCss: [
+				'./src/styles/custom.css'
+			],
+			title: 'scicalc v0.2.0',
 			social: {
 				github: 'https://github.com/a2-ai/scicalc',
 			},
@@ -110,7 +114,7 @@ export default defineConfig({
 									label: 'Vitals',
 									collapsed: true,
 									items: [
-										{ label: "bbmi", slug: "reference/data_functions/vitals/bbmi" },
+										{ label: "bmi", slug: "reference/data_functions/vitals/bmi" },
 										{ 
 											label: "bsa",
 											items: [
@@ -120,8 +124,8 @@ export default defineConfig({
 											],
 										},
 										{ label: "crcl", slug: "reference/data_functions/vitals/crcl" },
-										{ label: "brfc", slug: "reference/data_functions/vitals/brfc" },
-										{ label: "bhfc", slug: "reference/data_functions/vitals/bhfc" },
+										{ label: "rfc", slug: "reference/data_functions/vitals/rfc" },
+										{ label: "hfc", slug: "reference/data_functions/vitals/hfc" },
 										{ 
 											label: "egfr", 
 											items: [

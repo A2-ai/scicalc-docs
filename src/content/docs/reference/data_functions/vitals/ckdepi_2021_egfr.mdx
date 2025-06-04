@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/ckdepi_2021_egfr.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/ckdepi_2021_egfr.txt?raw';
+
+<Code code={importedCode} lang="r" title="ckdepi_2021_egfr.R" />
 
 ## Equation
 Using:

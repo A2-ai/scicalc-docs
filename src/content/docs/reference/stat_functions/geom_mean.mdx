@@ -5,6 +5,12 @@ pagefind: true
 import { Content as EContent } from '../../../../content/rd_docs/geom_mean.md';
 
 <EContent />
+
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/geom_mean.txt?raw';
+
+<Code code={importedCode} lang="r" title="geom_mean.R" />
+
 ## Equation
 $$
 \text{geometric mean} = 

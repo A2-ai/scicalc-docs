@@ -1,34 +1,36 @@
 ## Description
 
-
- Reads a file if the supplied hash matches the file's hash
+Reads a file if the supplied hash matches the file's hash
 
 ## Usage
 
 ```r
-
- read_hashed_file(file_path, hash, ...)
-
+read_hashed_file(
+  file_path,
+  hash,
+  ...
+)
 ```
+
 ## Arguments
 
-| Name   | Description |
-|--------|-------------|
-|`file_path`| path to file with data you want to read|
-|`hash`| hash you expect the file to have|
-|`...`| additional arguments for digest or read_csv, parquet, sas|
+| Name | Description |
+|------|-------------|
+| `file_path` | path to file with data you want to read |
+| `hash` | hash you expect the file to have |
+| `...` | additional arguments for digest or read_csv, parquet, sas |
+
 ## Returns
 
-
- data object of contents of file_path
+data object of contents of file_path
 
 ## Examples
 
 ```r
-
- file_path <- system.file("extdata/data/source/dm.sas7bdat", package = "scicalc")
+file_path <- "data/derived/example_pk.parquet"
  
- hash <- digest::digest(file = file_path)
+ hash <- 0cfd6da55e6c1e198effe1e584c26d79
  read_hashed_file(file_path, hash)
-
 ```
+
+

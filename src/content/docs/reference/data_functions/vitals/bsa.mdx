@@ -6,6 +6,11 @@ pagefind: true
 import { Content as BsaContent } from '../../../../../content/rd_docs/bsa.md';
 
 <BsaContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/bsa.txt?raw';
+
+<Code code={importedCode} lang="r" title="bsa.R" />
+
 
 ## Equation
 The equation used is dependent on `method`

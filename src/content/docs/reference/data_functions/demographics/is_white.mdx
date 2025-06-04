@@ -6,3 +6,8 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/is_white.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/is_white.txt?raw';
+
+<Code code={importedCode} lang="r" title="is_white.R" />
+

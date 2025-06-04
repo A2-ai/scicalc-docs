@@ -6,6 +6,10 @@ pagefind: true
 import { Content as EContent } from '../../../../../content/rd_docs/schwartz_egfr.md';
 
 <EContent />
+import { Code } from '@astrojs/starlight/components';
+import importedCode from '/src/assets/output/schwartz_egfr.txt?raw';
+
+<Code code={importedCode} lang="r" title="schwartz_egfr.R" />
 
 ## Equation
 Using:
