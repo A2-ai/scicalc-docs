@@ -1,11 +1,11 @@
 ---
-title: "Calculates Estimated Glomerular Filtration Rate based on Sex, Race, Age, and Creatinine levels based on the CKDEPI 2009 equation"
-description: "Calculates Estimated Glomerular Filtration Rate based on Sex, Race, Age, and Creatinine levels based on the CKDEPI 2009 equation"
+title: "Calculate eGFR Using CKD-EPI 2009 Equation"
+description: "Calculate eGFR Using CKD-EPI 2009 Equation"
 ---
 
 ## Description
 
-Calculates Estimated Glomerular Filtration Rate based on Sex, Race, Age, and Creatinine levels based on the CKDEPI 2009 equation
+Calculate eGFR Using CKD-EPI 2009 Equation
 
 ## Usage
 
@@ -22,9 +22,37 @@ ckdepi_2009_egfr(sexf, raceb, age, creat)
 | `age` | age of subject (years) |
 | `creat` | creatinine levels of subject (mg/dL) |
 
+## Details
+
+The CKD-EPI 2009 equation: 
+
+$$
+eGFR = 141 \cdot \min(S_{cr}/\kappa, 1)^\alpha \cdot \max(S_{cr}/\kappa, 1)^{-1.209} \cdot 0.993^A \cdot 1.018^F \cdot 1.159^B
+$$
+
+ where: 
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $\kappa$ = 0.7 (female) or 0.9 (male)
+- $\alpha$ = -0.329 (female) or -0.411 (male)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+- $B$ = 1 (Black) or 0 (other)
+
 ## Value
 
 the eGFR value (mL/min/1.73m2)
+
+## See Also
+
+Other renal_function: 
+<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
 
 ## Examples
 
@@ -32,11 +60,11 @@ the eGFR value (mL/min/1.73m2)
 e <- ckdepi_2009_egfr(TRUE, TRUE, 24, 1)
 
 df <- data.frame(
-   "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
-   "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
-   "AGE" = c(24, 24, 23, 24),
-   "CREAT" = c(1, 1, 2, 1)
-   )
+  "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
+  "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
+  "AGE" = c(24, 24, 23, 24),
+  "CREAT" = c(1, 1, 2, 1)
+)
 df <- dplyr::mutate(df, egfr = ckdepi_2009_egfr(SEXF, RACEB, AGE, CREAT))
 df
 ```

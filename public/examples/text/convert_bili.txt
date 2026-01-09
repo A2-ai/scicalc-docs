@@ -1,0 +1,11 @@
+[1] 0.9997908
+attr(,"units")
+[1] "mg/dL" 
+# A tibble: 4 × 3
+# Groups:   ID [4]
+     ID  BILI BILIBL
+  <dbl> <dbl>  <dbl>
+1     1    10  0.585
+2     2    15  0.877
+3     3    25  1.46 
+4     4    40  2.34  

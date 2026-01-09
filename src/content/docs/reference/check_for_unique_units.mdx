@@ -1,11 +1,11 @@
 ---
-title: "Gives a TRUE/FALSE for if the Parameters have only 1 associated unit"
-description: "Gives a TRUE/FALSE for if the Parameters have only 1 associated unit"
+title: "Check for Unique Units per Parameter"
+description: "Check for Unique Units per Parameter"
 ---
 
 ## Description
 
-Gives a TRUE/FALSE for if the Parameters have only 1 associated unit
+Check for Unique Units per Parameter
 
 ## Usage
 
@@ -24,6 +24,11 @@ check_for_unique_units(params, units)
 
 a boolean
 
+## See Also
+
+Other unit_checking: 
+<a href={`${import.meta.env.BASE_URL}reference/get_unique_units_df`}><code>get_unique_units_df</code></a>
+
 ## Examples
 
 ```r
@@ -35,5 +40,11 @@ df <- data.frame(
     "g/L","U/L","U/L","umol/L","umol/L",
     "U/L","μmol/L","μmol/L","IU/L","IU/L")
 )
-check_for_unique_units <- get_unique_units_df(df$PARAM, df$UNIT)
+check_for_unique_units(df$PARAM, df$UNIT)
 ```
+
+### Output
+
+import exampleOutput from '/examples/text/check_for_unique_units.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

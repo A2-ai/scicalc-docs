@@ -1,16 +1,16 @@
 ---
-title: "Reads data from xlsx/xls file and prints hash of contents."
-description: "Reads data from xlsx/xls file and prints hash of contents."
+title: "Read Excel File with Hash Verification"
+description: "Read Excel File with Hash Verification"
 ---
 
 ## Description
 
-Reads data from xlsx/xls file and prints hash of contents.
+Read Excel File with Hash Verification
 
 ## Usage
 
 ```r
-read_excel_with_hash(xlsx_file_path, ...)
+read_excel_with_hash(xlsx_file_path, ..., algo = "blake3")
 ```
 
 ## Arguments
@@ -19,10 +19,25 @@ read_excel_with_hash(xlsx_file_path, ...)
 |----------|-------------|
 | `xlsx_file_path` | an xlsx/xls file to ingest |
 | `...` | additional arguments to digest or read_excel |
+| `algo` | hashing algorithm to use, default is "blake3" |
 
 ## Value
 
 a dataframe(?) of data within file
+
+## See Also
+
+Other file_io: 
+<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_hashed_file`}><code>read_hashed_file</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_csv_with_hash`}><code>write_csv_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_file_with_hash`}><code>write_file_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_parquet_with_hash`}><code>write_parquet_with_hash</code></a>
 
 ## Examples
 

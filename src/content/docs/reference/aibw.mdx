@@ -1,0 +1,78 @@
+---
+title: "Calculate Adjusted Ideal Body Weight"
+description: "Calculates adjusted ideal body weight, which accounts for excess body weight in obese patients."
+---
+
+## Description
+
+Calculates adjusted ideal body weight, which accounts for excess body weight in obese patients.
+
+## Usage
+
+```r
+aibw(
+  weight,
+  height,
+  sexf,
+  age,
+  allow_ibw_lt_intercept = TRUE,
+  allow_tbw_lt_ibw = TRUE
+)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `weight` | baseline weight of subject in kilograms |
+| `height` | baseline height of subject in centimeters |
+| `sexf` | 0 = male, 1 = female, from sexf() |
+| `age` | Numeric vector of baseline age in years. |
+| `allow_ibw_lt_intercept` | logical indicating whether to allow ideal body weight to be lower than intercepts (default TRUE). |
+| `allow_tbw_lt_ibw` | logical indicating whether to allow adjusted ideal body weight to be less than IBW (default TRUE). |
+
+## Details
+
+Adjusted ideal body weight is calculated as: 
+
+$$
+AIBW = IBW + 0.4 \cdot (TBW - IBW)
+$$
+
+ where: 
+- $IBW$ = ideal body weight (kg)
+- $TBW$ = total (actual) body weight (kg)
+
+## Value
+
+adjusted ideal body weight (kg)
+
+## See Also
+
+Other body_composition: 
+<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/bmic`}><code>bmic</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mosteller_bsa`}><code>mosteller_bsa</code></a>
+
+## Examples
+
+```r
+df <- data.frame(
+  ID = 1:6,
+  HEIGHT = c(160, 170, 175, 165, 180, 150),
+  WEIGHT = c(53, 71, 78, 55, 72, 43),
+  SEX = c(1, 0, 0, 1, 0, 1),
+  AGE = c(18, 27, 34, 33, 29, 30)
+)
+df <- dplyr::mutate(df, AIBW = aibw(WEIGHT, HEIGHT, SEX, AGE))
+df
+```
+
+### Output
+
+import exampleOutput from '/examples/text/aibw.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

@@ -1,0 +1,52 @@
+---
+title: "Convert Albumin Concentration Units"
+description: "Convert Albumin Concentration Units"
+---
+
+## Description
+
+Convert Albumin Concentration Units
+
+## Usage
+
+```r
+convert_alb(alb)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `alb` | albumin concentration (g/L) |
+
+## Value
+
+Albumin concentration (g/dL)
+
+## See Also
+
+Other unit_conversion: 
+<a href={`${import.meta.env.BASE_URL}reference/convert_bili`}><code>convert_bili</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/convert_creat`}><code>convert_creat</code></a>
+
+## Examples
+
+```r
+convert_alb(40)
+
+df <- data.frame(
+  ID = c(1, 2, 3, 4),
+  ALB = c(35, 40, 28, 45)
+)
+
+df <- df %>%
+  dplyr::group_by(ID) %>%
+  dplyr::mutate(ALBBL = convert_alb(ALB))
+df
+```
+
+### Output
+
+import exampleOutput from '/examples/text/convert_alb.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

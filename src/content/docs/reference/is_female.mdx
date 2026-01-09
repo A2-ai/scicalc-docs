@@ -1,11 +1,11 @@
 ---
-title: "Takes character input and returns TRUE/FALSE if female/male"
-description: "Takes character input and returns TRUE/FALSE if female/male"
+title: "Check if Sex is Female"
+description: "Check if Sex is Female"
 ---
 
 ## Description
 
-Takes character input and returns TRUE/FALSE if female/male
+Check if Sex is Female
 
 ## Usage
 
@@ -23,12 +23,27 @@ is_female(x)
 
 boolean representing female
 
+## See Also
+
+Other demographics: 
+<a href={`${import.meta.env.BASE_URL}reference/ethnicn`}><code>ethnicn</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_asian`}><code>is_asian</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_black`}><code>is_black</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_hispanic_or_latino`}><code>is_hispanic_or_latino</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_not_hispanic_or_latino`}><code>is_not_hispanic_or_latino</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_other`}><code>is_other</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_white`}><code>is_white</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/racen`}><code>racen</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/sexf`}><code>sexf</code></a>
+
 ## Examples
 
 ```r
 is_female("F")
 
 is_female(c("MALE", "FEMALE"))
+
+is_female(c(1, 0, -999))
 ```
 
 ### Output

@@ -1,11 +1,11 @@
 ---
-title: "Calculates Creatinine clearance with Cockcroft-Gault equation"
-description: "Calculates Creatinine clearance with Cockcroft-Gault equation"
+title: "Calculate Creatinine Clearance Using Cockcroft-Gault Equation"
+description: "Calculate Creatinine Clearance Using Cockcroft-Gault Equation"
 ---
 
 ## Description
 
-Calculates Creatinine clearance with Cockcroft-Gault equation
+Calculate Creatinine Clearance Using Cockcroft-Gault Equation
 
 ## Usage
 
@@ -22,9 +22,35 @@ crcl(sexf, age, creat, weight)
 | `creat` | serum creatinine levels (mg/dL) |
 | `weight` | weight of subject (kg) |
 
+## Details
+
+The Cockcroft-Gault equation: 
+
+$$
+CrCl = F \cdot \frac{(140 - A) \cdot W}{72 \cdot S_{cr}}
+$$
+
+ where: 
+- $A$ = age (years)
+- $W$ = weight (kg)
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $F$ = 0.85 (female) or 1 (male)
+
 ## Value
 
 CrCl (mL/min)
+
+## See Also
+
+Other renal_function: 
+<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
 
 ## Examples
 

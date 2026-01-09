@@ -1,11 +1,11 @@
 ---
-title: "Converts continuous variable into factor categories."
-description: "Converts continuous variable into factor categories."
+title: "Categorize Continuous Variable into Quantile Bins"
+description: "Categorize Continuous Variable into Quantile Bins"
 ---
 
 ## Description
 
-Converts continuous variable into factor categories.
+Categorize Continuous Variable into Quantile Bins
 
 ## Usage
 
@@ -31,5 +31,11 @@ a vector of categorized data as factor
 
 ```r
 x <- rnorm(1000, mean = 10, sd = 5)
-xc <- categorize(x, nbins = 5)
+categorize(x, nbins = 5)
 ```
+
+### Output
+
+import exampleOutput from '/examples/text/categorize.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

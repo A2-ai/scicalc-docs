@@ -1,0 +1,52 @@
+---
+title: "Convert Bilirubin Concentration Units"
+description: "Convert Bilirubin Concentration Units"
+---
+
+## Description
+
+Convert Bilirubin Concentration Units
+
+## Usage
+
+```r
+convert_bili(bili)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `bili` | bilirubin concentration (µmol/L) |
+
+## Value
+
+Bilirubin concentration (mg/dL)
+
+## See Also
+
+Other unit_conversion: 
+<a href={`${import.meta.env.BASE_URL}reference/convert_alb`}><code>convert_alb</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/convert_creat`}><code>convert_creat</code></a>
+
+## Examples
+
+```r
+convert_bili(17.1) # ≈ 1 mg/dL
+
+df <- data.frame(
+  ID = c(1, 2, 3, 4),
+  BILI = c(10, 15, 25, 40)
+)
+
+df <- df %>%
+  dplyr::group_by(ID) %>%
+  dplyr::mutate(BILIBL = convert_bili(BILI))
+df
+```
+
+### Output
+
+import exampleOutput from '/examples/text/convert_bili.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

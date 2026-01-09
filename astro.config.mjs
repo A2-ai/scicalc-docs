@@ -60,7 +60,11 @@ export default defineConfig({
           label: "Vitals",
           collapsed: true,
           items: [
+            { label: "agec", slug: "reference/agec" },
             { label: "bmi", slug: "reference/bmi" },
+            { label: "bmic", slug: "reference/bmic" },
+            { label: "ibw", slug: "reference/ibw" },
+            { label: "aibw", slug: "reference/aibw" },
             { label: "bsa", slug: "reference/bsa" },
             { label: "dubois_bsa", slug: "reference/dubois_bsa" },
             { label: "mosteller_bsa", slug: "reference/mosteller_bsa" },
@@ -68,6 +72,7 @@ export default defineConfig({
             { label: "rfc", slug: "reference/rfc" },
             { label: "hfc", slug: "reference/hfc" },
             { label: "egfr", slug: "reference/egfr" },
+            { label: "aegfr", slug: "reference/aegfr" },
             { label: "ckdepi_2021_egfr", slug: "reference/ckdepi_2021_egfr" },
             { label: "ckdepi_2009_egfr", slug: "reference/ckdepi_2009_egfr" },
             { label: "ckdepi_2021_egfr_cystatin", slug: "reference/ckdepi_2021_egfr_cystatin" },
@@ -80,7 +85,10 @@ export default defineConfig({
           collapsed: true,
           items: [
             { label: "check_for_unique_units", slug: "reference/check_for_unique_units" },
-            { label: "get_unique_units_df", slug: "reference/get_unique_units_df" }
+            { label: "get_unique_units_df", slug: "reference/get_unique_units_df" },
+            { label: "convert_alb", slug: "reference/convert_alb" },
+            { label: "convert_bili", slug: "reference/convert_bili" },
+            { label: "convert_creat", slug: "reference/convert_creat" }
           ]
         },
         {
@@ -91,7 +99,9 @@ export default defineConfig({
             { label: "geom_sd", slug: "reference/geom_sd" },
             { label: "cv", slug: "reference/cv" },
             { label: "geom_cv", slug: "reference/geom_cv" },
-            { label: "categorize", slug: "reference/categorize" }
+            { label: "categorize", slug: "reference/categorize" },
+            { label: "cor_df", slug: "reference/cor_df" },
+            { label: "round_like", slug: "reference/round_like" }
           ]
         }
       ]

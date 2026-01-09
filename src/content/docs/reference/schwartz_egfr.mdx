@@ -1,11 +1,11 @@
 ---
-title: "Calculates eGFR based on Schwartz' equation"
-description: "Calculates eGFR based on Schwartz' equation"
+title: "Calculate eGFR Using Schwartz Equation"
+description: "Calculate eGFR Using Schwartz Equation"
 ---
 
 ## Description
 
-Calculates eGFR based on Schwartz' equation
+Calculate eGFR Using Schwartz Equation
 
 ## Usage
 
@@ -20,9 +20,33 @@ schwartz_egfr(height, creat)
 | `height` | height of patients in cm. |
 | `creat` | Serum creatinine levels in mg/dL |
 
+## Details
+
+The Schwartz equation for pediatric eGFR: 
+
+$$
+eGFR = 0.413 \cdot \frac{H}{S_{cr}}
+$$
+
+ where: 
+- $H$ = height (cm)
+- $S_{cr}$ = serum creatinine (mg/dL)
+
 ## Value
 
 eGFR in mL/min/1.73m^2
+
+## See Also
+
+Other renal_function: 
+<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>
 
 ## Examples
 

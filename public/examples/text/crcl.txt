@@ -1,4 +1,6 @@
-[1] 11.66667 
+[1] 11.66667
+attr(,"units")
+[1] "mL/min" 
 # A tibble: 8 × 7
 # Groups:   ID [2]
      ID SEX   RACE    AGE CREAT WEIGHT  CRCL

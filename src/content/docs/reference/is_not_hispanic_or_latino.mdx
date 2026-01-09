@@ -1,11 +1,11 @@
 ---
-title: "Takes character input and returns TRUE/FALSE if Not Hispanic or Latino or other"
-description: "Takes character input and returns TRUE/FALSE if Not Hispanic or Latino or other"
+title: "Check if Ethnicity is Not Hispanic or Latino"
+description: "Check if Ethnicity is Not Hispanic or Latino"
 ---
 
 ## Description
 
-Takes character input and returns TRUE/FALSE if "Not Hispanic or Latino" or other
+Check if Ethnicity is Not Hispanic or Latino
 
 ## Usage
 
@@ -23,6 +23,19 @@ is_not_hispanic_or_latino(x)
 
 boolean representing Ethnic == "Not Hispanic or Latino"
 
+## See Also
+
+Other demographics: 
+<a href={`${import.meta.env.BASE_URL}reference/ethnicn`}><code>ethnicn</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_asian`}><code>is_asian</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_black`}><code>is_black</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_female`}><code>is_female</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_hispanic_or_latino`}><code>is_hispanic_or_latino</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_other`}><code>is_other</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_white`}><code>is_white</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/racen`}><code>racen</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/sexf`}><code>sexf</code></a>
+
 ## Examples
 
 ```r
@@ -31,6 +44,8 @@ is_not_hispanic_or_latino("HISPANIC OR LATINO")
 is_not_hispanic_or_latino("NOT HISPANIC OR LATINO")
 
 is_not_hispanic_or_latino("UNKNOWN")
+
+is_not_hispanic_or_latino(0)
 ```
 
 ### Output

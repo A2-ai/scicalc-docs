@@ -1,16 +1,16 @@
 ---
-title: "Reads a file if the supplied hash matches the file's hash"
-description: "Reads a file if the supplied hash matches the file's hash"
+title: "Read File with Required Hash Match"
+description: "Read File with Required Hash Match"
 ---
 
 ## Description
 
-Reads a file if the supplied hash matches the file's hash
+Read File with Required Hash Match
 
 ## Usage
 
 ```r
-read_hashed_file(file_path, hash, ...)
+read_hashed_file(file_path, hash, ..., algo = "blake3")
 ```
 
 ## Arguments
@@ -20,10 +20,25 @@ read_hashed_file(file_path, hash, ...)
 | `file_path` | path to file with data you want to read |
 | `hash` | hash you expect the file to have |
 | `...` | additional arguments for digest or read_csv, parquet, sas |
+| `algo` | hashing algorithm to use, default is "blake3" |
 
 ## Value
 
 data object of contents of file_path
+
+## See Also
+
+Other file_io: 
+<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_excel_with_hash`}><code>read_excel_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_csv_with_hash`}><code>write_csv_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_file_with_hash`}><code>write_file_with_hash</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/write_parquet_with_hash`}><code>write_parquet_with_hash</code></a>
 
 ## Examples
 

@@ -1,0 +1,72 @@
+---
+title: "Calculate Absolute eGFR"
+description: "Converts relative eGFR (normalized to 1.73 m²) to absolute eGFR using the patient's actual body surface area."
+---
+
+## Description
+
+Converts relative eGFR (normalized to 1.73 m²) to absolute eGFR using the patient's actual body surface area.
+
+## Usage
+
+```r
+aegfr(egfr, bsa)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `egfr` | estimated glomerular filtration rate (mL/min/1.73 m²) |
+| `bsa` | body surface area (m²) |
+
+## Details
+
+Absolute eGFR is calculated as: 
+
+$$
+aGFR = \frac{eGFR \cdot BSA}{1.73}
+$$
+
+ where: 
+- $eGFR$ = relative eGFR (mL/min/1.73m²)
+- $BSA$ = body surface area (m²)
+
+## Value
+
+Absolute eGFR (mL/min)
+
+## See Also
+
+Other renal_function: 
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
+
+## Examples
+
+```r
+aegfr(90, 1.9)
+
+df <- data.frame(
+  ID = c(1, 2, 3, 4),
+  EGFR = c(80, 95, 70, 60),
+  BSA = c(1.60, 1.85, 1.75, 2.00)
+)
+
+df <- df %>%
+  dplyr::group_by(ID) %>%
+  dplyr::mutate(AEGFR = aegfr(EGFR, BSA))
+df
+```
+
+### Output
+
+import exampleOutput from '/examples/text/aegfr.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

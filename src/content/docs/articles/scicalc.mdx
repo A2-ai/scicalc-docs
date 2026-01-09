@@ -2,14 +2,6 @@
 title: "Scicalc"
 ---
 
-To install the scicalc package you can run the following two commands:
-
-``` r
-options(repos = c('scicalc' = "https://a2-ai.github.io/gh-pkg-mirror/scicalc",
-                  getOption("repos")))
-install.packages("scicalc")
-```
-
 # Scicalc
 
 Scicalc is a package of functions commonly used at A2-Ai. We hope this
@@ -20,20 +12,18 @@ there are additional functions we should include!
 
 ``` r
 library(scicalc)
+library(dplyr)
 ```
 
 ## Reading in data
 
-I’ll first try and read in data from `~/inst/extdata/data/source` - in R
-packages extra files go in the `inst` directory, but we can pretend this
-is just like a Project starter `data/source` directory.
+We’ll read in data from the package’s installed `extdata` directory
+using `system.file()`. In R packages, extra files go in the `inst`
+directory, which becomes accessible via `system.file()` after
+installation.
 
 ``` r
-data_source <- file.path(here::here(), "inst", "extdata", "data", "source")
-if (!dir.exists(data_source)) {
-  fs::dir_create(data_source)
-}
-
+data_source <- system.file("extdata", "data", "source", package = "scicalc")
 list.files(data_source)
 #> [1] "dm.sas7bdat"     "lb.csv"          "pc.parquet"      "test_excel.xlsx"
 #> [5] "test.txt"        "vs.parquet"
@@ -51,8 +41,8 @@ raw_data <- purrr::map(
   scicalc::read_file_with_hash
 ) %>%
   purrr::set_names(tools::file_path_sans_ext(list.files(data_source)))
-#> dm.sas7bdat: 1104a0d0f9616823a2b735632ae8d307
-#> lb.csv: b5e4122d4df0ec79401eb6bb0d2d0d85
+#> dm.sas7bdat: d32bfd4785ba4c1a405caa1314796c911e97727064ecf2fb987386150dafe15f
+#> lb.csv: 577007ecd6292a122b6fdf48add5112ba0976d43db617bb087d8fca07da5b126
 #> Rows: 12 Columns: 11
 #> ── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────
 #> Delimiter: ","
@@ -61,11 +51,10 @@ raw_data <- purrr::map(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#> pc.parquet: 11768bdc82b792c3e73394632869466c
-#> test_excel.xlsx: f665dce4222df738750216bb9cd53819
+#> pc.parquet: 894693336ec5e4deb6d707613e35e0206edb47858b119c0fb7684d2240ba294b
+#> test_excel.xlsx: 99bf0f59e74683f3173aba85b083dd928f827d6619b01e1afe80dc1830e7859d
 #> Sheets in test_excel.xlsx: model_summary, sheet with space, empty
-#> Warning in .f(.x[[i]], ...): File type: txt not currently supported
-#> vs.parquet: 1a7dbc83f571637aa9608717238a2970
+#> vs.parquet: c73eece828a6b0cb4a139b10269d47ba1ce8a134ccf66656b64cc98482eef9d9
 ```
 
 These hashes come from `digest::digest`’s default algorithm `md5`, but
@@ -79,7 +68,7 @@ raw_data <- purrr::map(
   algo = "blake3"
 ) %>%
   purrr::set_names(tools::file_path_sans_ext(list.files(data_source)))
-#> dm.sas7bdat: dc36ca8f1fb5a30f04dee798f86ba5ebf293abe6ee82df7c1e9253ba3459573b
+#> dm.sas7bdat: d32bfd4785ba4c1a405caa1314796c911e97727064ecf2fb987386150dafe15f
 #> lb.csv: 577007ecd6292a122b6fdf48add5112ba0976d43db617bb087d8fca07da5b126
 #> Rows: 12 Columns: 11
 #> ── Column specification ───────────────────────────────────────────────────────────────────────────────────────────────
@@ -89,11 +78,10 @@ raw_data <- purrr::map(
 #> 
 #> ℹ Use `spec()` to retrieve the full column specification for this data.
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#> pc.parquet: 845a06bb7b1f65e495511096ee82ebe74ff69ff564df0e4495f29626a6a3b8c8
+#> pc.parquet: 894693336ec5e4deb6d707613e35e0206edb47858b119c0fb7684d2240ba294b
 #> test_excel.xlsx: 99bf0f59e74683f3173aba85b083dd928f827d6619b01e1afe80dc1830e7859d
 #> Sheets in test_excel.xlsx: model_summary, sheet with space, empty
-#> Warning in .f(.x[[i]], ...): File type: txt not currently supported
-#> vs.parquet: 6a45db71d45f82e0a4ac443aff5ce7ffe7703ee3a1dc1d4f17b9ba43e1a022d7
+#> vs.parquet: c73eece828a6b0cb4a139b10269d47ba1ce8a134ccf66656b64cc98482eef9d9
 ```
 
 ``` r
@@ -310,7 +298,7 @@ function won’t let us overwrite the file unless we supply
 algorithm to use for the digest.
 
 ``` r
-data_derived <- file.path(here::here(), "inst", "extdata", "data", "derived")
+data_derived <- file.path(tempdir(), "scicalc_demo", "derived")
 if (!file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
   scicalc::write_file_with_hash(
     df, file.path(data_derived, "pk_data_v01.parquet"),
@@ -323,8 +311,7 @@ if (!file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
     overwrite = TRUE, algo = "blake3"
   )
 }
-#> [1] "Overwriting data!"
-#> /Users/mattsmith/Documents/scicalc/inst/extdata/data/derived/pk_data_v01.parquet: c6aa6463a5a3e09c867a23acd0465e2f539502e5ca5805ee6f3fba30b9493608
+#> /var/folders/bx/l0m1kftd7m93lvrc4m3_309c0000gn/T//Rtmp31Jyou/scicalc_demo/derived/pk_data_v01.parquet: c705361512d20330513f73dc528dc88cd0f5905914efbdfd19b61f36aed6276b
 ```
 
 ## Reading in derived data
@@ -340,7 +327,7 @@ hash.
 ``` r
 hash <- digest::digest(file.path(data_derived, "pk_data_v01.parquet")) # This is a hash of the string to the file type so it will not match the hash for contents of the file.
 print(hash)
-#> [1] "292240dd3c7b109559123aaa7b161af9"
+#> [1] "30dd34dcd05ac26bed92ffb0e6f0600b"
 # This hash is incorrect so the function errors
 if (file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
   testthat::expect_error(scicalc::read_hashed_file(file.path(data_derived, "pk_data_v01.parquet"), hash))
@@ -352,7 +339,7 @@ if (file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
 ``` r
 correct_hash <- digest::digest(file = file.path(data_derived, "pk_data_v01.parquet"), algo = "blake3")
 print(correct_hash)
-#> [1] "c6aa6463a5a3e09c867a23acd0465e2f539502e5ca5805ee6f3fba30b9493608"
+#> [1] "c705361512d20330513f73dc528dc88cd0f5905914efbdfd19b61f36aed6276b"
 ```
 
 ``` r
@@ -364,7 +351,7 @@ data <- scicalc::read_hashed_file(
 data
 #> # A tibble: 12 × 30
 #>    ID    SEX   RACE    AGE CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI
-#>    <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
+#>  * <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
 #>  1 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
 #>  2 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
 #>  3 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
@@ -387,20 +374,21 @@ data
 2.  giving the `md5` hash works
 
 ``` r
-md5_hash <- digest::digest(file = file.path(data_derived, "pk_data_v01.parquet"))
+md5_hash <- digest::digest(file = file.path(data_derived, "pk_data_v01.parquet"), algo = "md5")
 print(md5_hash)
-#> [1] "20c5558174552a787d4572a4534a3b3e"
+#> [1] "e18ea29838b269b4c8c5b30025aeaa3f"
 ```
 
 ``` r
 data <- scicalc::read_hashed_file(
   file.path(data_derived, "pk_data_v01.parquet"),
-  md5_hash
+  md5_hash,
+  algo = "md5"
 )
 data
 #> # A tibble: 12 × 30
 #>    ID    SEX   RACE    AGE CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI
-#>    <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
+#>  * <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
 #>  1 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
 #>  2 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
 #>  3 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2

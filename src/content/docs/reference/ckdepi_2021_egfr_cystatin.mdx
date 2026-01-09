@@ -1,11 +1,11 @@
 ---
-title: "Calculates eGFR with CKDEPI 2021 cystatin equation"
-description: "Calculates eGFR with CKDEPI 2021 cystatin equation"
+title: "Calculate eGFR Using CKD-EPI 2021 Cystatin Equation"
+description: "Calculate eGFR Using CKD-EPI 2021 Cystatin Equation"
 ---
 
 ## Description
 
-Calculates eGFR with CKDEPI 2021 cystatin equation
+Calculate eGFR Using CKD-EPI 2021 Cystatin Equation
 
 ## Usage
 
@@ -22,9 +22,38 @@ ckdepi_2021_egfr_cystatin(sexf, age, creat, cystc)
 | `creat` | serum creatinine levels in mg/dL. |
 | `cystc` | serum cystatin C levels in mg/L. |
 
+## Details
+
+The CKD-EPI 2021 creatinine-cystatin equation: 
+
+$$
+eGFR = 135 \cdot \min(S_{cr}/\kappa, 1)^\alpha \cdot \max(S_{cr}/\kappa, 1)^{-0.544} \cdot \min(S_{cys}/0.8, 1)^{-0.323} \\
+\cdot \max(S_{cys}/0.8, 1)^{-0.778} \cdot 0.9961^A \cdot 0.963^F
+$$
+
+ where: 
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $S_{cys}$ = serum cystatin C (mg/L)
+- $\kappa$ = 0.7 (female) or 0.9 (male)
+- $\alpha$ = -0.219 (female) or -0.144 (male)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+
 ## Value
 
 eGFR in mL/min/1.73 m^2
+
+## See Also
+
+Other renal_function: 
+<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
 
 ## Examples
 
@@ -32,12 +61,12 @@ eGFR in mL/min/1.73 m^2
 e <- ckdepi_2021_egfr_cystatin(TRUE, 24, 1, 2)
 
 df <- data.frame(
-   "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
-   "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
-   "AGE" = c(24, 24, 23, 24),
-   "CREAT" = c(1, 1, 2, 1),
-   "CYSTC" = c(0.4, 0.8, 1, 2)
-   )
+  "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
+  "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
+  "AGE" = c(24, 24, 23, 24),
+  "CREAT" = c(1, 1, 2, 1),
+  "CYSTC" = c(0.4, 0.8, 1, 2)
+)
 df <- dplyr::mutate(df, egfr = ckdepi_2021_egfr_cystatin(SEXF, AGE, CREAT, CYSTC))
 df
 ```

@@ -1,0 +1,47 @@
+---
+title: "Round to Significant Digits"
+description: "Priority: If sdig is provided, round x to that many significant digits."
+---
+
+## Description
+
+Priority:
+
+1.  If `sdig` is provided, round `x` to that many significant digits.
+
+2.  If `sdig` is NULL but `ref` is provided, infer the number of significant digits from `ref`.
+
+3.  If both are NULL, return `x` unchanged.
+
+## Usage
+
+```r
+round_like(x, ref = NULL, sdig = NULL)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `x` | Numeric vector to round. |
+| `ref` | Optional numeric vector used to infer the number of significant digits. |
+| `sdig` | Optional integer specifying the number of significant digits to apply. |
+
+## Value
+
+A numeric vector rounded to the appropriate precision.
+
+## Examples
+
+```r
+round_like(123.456, sdig = 2)       # -> 120
+round_like(123.456, ref = 12.3)     # -> 123
+round_like(123.456, ref = 12.34)    # -> 123.5
+round_like(123.456)                 # -> 123.456
+```
+
+### Output
+
+import exampleOutput from '/examples/text/round_like.txt?raw';
+
+<pre style="overflow-x: auto;">{exampleOutput}</pre>

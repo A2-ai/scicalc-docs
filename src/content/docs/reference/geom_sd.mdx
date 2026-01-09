@@ -1,11 +1,11 @@
 ---
-title: "Computes the geometric standard deviation of a vector x."
-description: "Computes the geometric standard deviation of a vector x."
+title: "Calculate Geometric Standard Deviation"
+description: "Calculate Geometric Standard Deviation"
 ---
 
 ## Description
 
-Computes the geometric standard deviation of a vector x.
+Calculate Geometric Standard Deviation
 
 ## Usage
 
@@ -20,9 +20,25 @@ geom_sd(x, na.rm = FALSE)
 | `x` | The vector of data you want the geometric sd of. |
 | `na.rm` | a boolean to remove NA values. Default is False |
 
+## Details
+
+The geometric standard deviation is calculated as: 
+
+$$
+GSD = \exp\left(\sqrt{Var[\log(x)]}\right)
+$$
+
 ## Value
 
 the geometric standard deviation of x
+
+## See Also
+
+Other statistics: 
+<a href={`${import.meta.env.BASE_URL}reference/cor_df`}><code>cor_df</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/cv`}><code>cv</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/geom_cv`}><code>geom_cv</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/geom_mean`}><code>geom_mean</code></a>
 
 ## Examples
 

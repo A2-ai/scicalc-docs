@@ -1,11 +1,11 @@
 ---
-title: "Takes character input and returns TRUE/FALSE if asian/other"
-description: "Takes character input and returns TRUE/FALSE if asian/other"
+title: "Check if Race is Asian"
+description: "Check if Race is Asian"
 ---
 
 ## Description
 
-Takes character input and returns TRUE/FALSE if asian/other
+Check if Race is Asian
 
 ## Usage
 
@@ -23,12 +23,27 @@ is_asian(x)
 
 boolean representing Race == Asian
 
+## See Also
+
+Other demographics: 
+<a href={`${import.meta.env.BASE_URL}reference/ethnicn`}><code>ethnicn</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_black`}><code>is_black</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_female`}><code>is_female</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_hispanic_or_latino`}><code>is_hispanic_or_latino</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_not_hispanic_or_latino`}><code>is_not_hispanic_or_latino</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_other`}><code>is_other</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/is_white`}><code>is_white</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/racen`}><code>racen</code></a>,
+<a href={`${import.meta.env.BASE_URL}reference/sexf`}><code>sexf</code></a>
+
 ## Examples
 
 ```r
 is_asian("ASIAN")
 
 is_asian("BLACK")
+
+is_asian(3)
 ```
 
 ### Output
