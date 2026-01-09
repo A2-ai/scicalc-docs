@@ -1,0 +1,7 @@
+  PARAM   UNIT
+1   ALB    g/L
+2   ALT    U/L
+3   AST    U/L
+4    CR umol/L
+5  TBIL umol/L
+6   ALB    U/L 

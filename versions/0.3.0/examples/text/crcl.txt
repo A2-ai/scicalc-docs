@@ -1,0 +1,15 @@
+[1] 11.66667
+attr(,"units")
+[1] "mL/min" 
+# A tibble: 8 × 7
+# Groups:   ID [2]
+     ID SEX   RACE    AGE CREAT WEIGHT  CRCL
+  <dbl> <chr> <chr> <dbl> <dbl>  <dbl> <dbl>
+1     1 F     WHITE    24     1     70  95.9
+2     1 F     WHITE    24     1     70  95.9
+3     1 F     WHITE    24     1     70  95.9
+4     1 F     WHITE    24     1     70  95.9
+5     2 M     BLACK    22     4     65  26.6
+6     2 M     BLACK    22     4     65  26.6
+7     2 M     BLACK    22     4     65  26.6
+8     2 M     BLACK    22     4     65  26.6 
