@@ -1,0 +1,40 @@
+---
+title: "Writes data to path, if directory doesn't exist it is created before file is written"
+description: "Writes data to path, if directory doesn't exist it is created before file is written"
+---
+
+## Description
+
+Writes data to path, if directory doesn't exist it is created before file is written
+
+## Usage
+
+```r
+write_file_with_hash(data, path, overwrite = FALSE, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `data` | the data object to write to file |
+| `path` | the destination of the file (csv or parquet) |
+| `overwrite` | boolean of whether to overwrite or not. |
+| `...` | additional arguments for digest or write_file. |
+
+## Value
+
+Nothing, File is created and hash of created file is printed
+
+## Examples
+
+```r
+## Not run: 
+df <- data.frame(
+  "a" = c(1, 2, 3, 4)
+  "b" = c("A", "B", "C", "D")
+)
+write_data_with_hash(df, "data.csv")
+
+## End(Not run)
+```

@@ -1,0 +1,36 @@
+---
+title: "Takes character input and returns standard yspec numeric value for Sex."
+description: "Also returns numeric for single character Sex characters F and M"
+---
+
+## Description
+
+Also returns numeric for single character Sex characters "F" and "M"
+
+## Usage
+
+```r
+sexf(sex)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `sex` | Sex character |
+
+## Value
+
+the standard yspec numeric value for the inputted Sex character
+
+## Examples
+
+```r
+sexf("FEMALE") # 1
+sexf("female") # 1
+sexf("f") # 1
+
+sexf("MALE") # 0
+
+sexf("NOT SPECIFIED") # 0
+```

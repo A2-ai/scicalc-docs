@@ -1,0 +1,34 @@
+---
+title: "Reads data from xlsx/xls file and prints hash of contents."
+description: "Reads data from xlsx/xls file and prints hash of contents."
+---
+
+## Description
+
+Reads data from xlsx/xls file and prints hash of contents.
+
+## Usage
+
+```r
+read_excel_with_hash(xlsx_file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `xlsx_file_path` | an xlsx/xls file to ingest |
+| `...` | additional arguments to digest or read_excel |
+
+## Value
+
+a dataframe(?) of data within file
+
+## Examples
+
+```r
+## Not run: 
+read_excel_with_hash("data/source/example.xpt")
+
+## End(Not run)
+```

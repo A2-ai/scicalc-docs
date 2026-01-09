@@ -1,38 +1,42 @@
 ---
-title: Welcome to Scicalc
+title: "Welcome to scicalc"
+description: "Scientific calculations for pharmacometrics"
 template: splash
 hero:
-  tagline: Ease PMx calculations with scicalc
+  tagline: Utility functions helpful for reproducible scientific calculations.
   image:
-    file: ../../assets/scicalc.png
+    file: /src/assets/logo.png
   actions:
-    - text: Scicalc User Guide
-      link: /reference/getting_started/
+    - text: Get Started
+      link: /articles/scicalc/
       icon: right-arrow
+      variant: primary
     - text: Explore the Scicalc repository
       link: https://github.com/a2-ai/scicalc
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Scicalc Highlights
+## Quick links
 
 <CardGrid stagger>
-	<Card title="File Manipulations" icon="document">
-		<a href='/reference/file_manipulations/reading/read_file_with_hash'>Functions for Reading and writing data</a>
-	</Card>
-	<Card title="Demographic Calculations" icon="seti:csv">
-		<a href='/reference/data_functions/demographics/is_asian'>Functions for working with demographic data</a>
-	</Card>
-	<Card title="Vitals Calculations" icon="heart">
-		<a href='/reference/data_functions/vitals/bbmi'>Functions for working with vitals data</a>
-	</Card>
-	<Card title="Statistical Calculations" icon="information">
-		<a href='/reference/stat_functions/geom_mean'>Functions for calculating statistics</a>
-	</Card>
-	<Card title='Lab Unit Checks' icon='seti:todo'>
-		<a href='/reference/unit_functions/check_for_unique_units'>Functions for checking units</a>
-	</Card>
+  <Card title="Function Reference" icon="list-format">
+    Complete API documentation for all functions.
+    [Browse Reference >](/reference/)
+  </Card>
+  <Card title="Articles & Guides" icon="open-book">
+    Learn how to use the package with step-by-step guides.
+    [Read Articles >](/articles/)
+  </Card>
+  <Card title="View Source" icon="github">
+    Explore the source code and contribute to the project.
+    [GitHub Repository >](https://github.com/a2-ai/scicalc)
+  </Card>
+  <Card title="Get Help" icon="information">
+    Found a bug or need help? Open an issue or discussion.
+    [Get Support >](https://github.com/a2-ai/scicalc/issues)
+  </Card>
 </CardGrid>
+

@@ -1,0 +1,113 @@
+---
+title: "Calculates renal impairment categories based on Renal Function Estimator"
+description: "This function categorizes renal function based on estimated glomerular filtration rate (eGFR), creatinine clearance, or other renal function estimators."
+---
+
+## Description
+
+This function categorizes renal function based on estimated glomerular filtration rate (eGFR), creatinine clearance, or other renal function estimators. It supports both clinical and regulatory categorization standards and can convert between absolute (mL/min) and relative (mL/min/1.73m²) units using body surface area.
+
+## Usage
+
+```r
+rfc(
+  estimator = NULL,
+  absolute_units = NULL,
+  bsa = NULL,
+  category_standard = c("regulatory", "clinical")
+)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `estimator` | Numeric vector of renal function estimator values (eGFR, CrCL, etc.) |
+| `absolute_units` | Logical indicating if `estimator` units are mL/min (`TRUE`) or mL/min/1.73m² (`FALSE`) |
+| `bsa` | Numeric vector of body surface area in m² for unit conversion. Required when converting between absolute and relative units |
+| `category_standard` | Character string specifying categorization standard: `"regulatory"` (default) or `"clinical"` |
+
+## Details
+
+The function applies different categorization schemes based on the `category_standard`:
+
+**Regulatory categories** (uses mL/min):
+
+- 1: Normal: ≥90 mL/min
+
+- 2: Mild impairment: 60-89 mL/min
+
+- 3: Moderate impairment: 30-59 mL/min
+
+- 4: Severe impairment: \<30 mL/min
+
+**Clinical categories** (uses mL/min/1.73m²):
+
+- 1: Normal: ≥90 mL/min/1.73m²
+
+- 2: Mild impairment: 60-89 mL/min/1.73m²
+
+- 3: Moderate impairment: 30-59 mL/min/1.73m²
+
+- 4: Severe impairment: 15-29 mL/min/1.73m²
+
+- 5: End-stage: \<15 mL/min/1.73m²
+
+When unit conversion is required, the function uses:
+
+- Absolute to relative: `relative = 1.73 (absolute / bsa)`
+
+- Relative to absolute: `absolute = relative (bsa / 1.73)`
+
+## Value
+
+Integer vector of renal impairment categories (1-4 for regulatory, 1-5 for clinical). Returns `-999` for missing values.
+
+## See Also
+
+<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a> for calculating eGFR, <a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a> for creatinine clearance,
+<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a> for body surface area calculation
+
+## Examples
+
+```r
+# Regulatory categories with absolute units (creatinine clearance)
+rfc(estimator = c(95, 75, 45, 25), absolute_units = TRUE)
+
+# Clinical categories with relative units (eGFR)
+rfc(
+  estimator = c(95, 75, 45, 25, 10),
+  absolute_units = FALSE,
+  category_standard = "clinical"
+)
+
+# Convert relative eGFR to regulatory categories
+rfc(
+  estimator = 65,
+  absolute_units = FALSE,
+  bsa = 1.8
+)
+
+# Pipeline example with realistic data
+df <- data.frame(
+  ID = 1:4,
+  SEX = c("F", "M", "F", "M"),
+  AGE = c(65, 45, 70, 50),
+  CREAT = c(1.2, 0.9, 1.5, 1.1),
+  WEIGHT = c(70, 80, 60, 85),
+  HEIGHT = c(165, 175, 160, 180),
+  RACE = c("WHITE", "BLACK", "OTHER", "ASIAN")
+)
+
+library(dplyr)
+df %>%
+  mutate(
+    EGFR = egfr(is_female(SEX), is_black(RACE), AGE, CREAT),
+    BSA = bsa(WEIGHT, HEIGHT, method = "Dubois"),
+    # Clinical categories using eGFR directly
+    BRFC_CLINICAL = rfc(EGFR, FALSE, category_standard = "clinical"),
+    # Regulatory categories converting eGFR to absolute
+    BRFC_REGULATORY = rfc(EGFR, FALSE, BSA)
+  )
+df
+```

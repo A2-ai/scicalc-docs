@@ -1,0 +1,34 @@
+---
+title: "Reads data from csv file and prints hash of contents."
+description: "Reads data from csv file and prints hash of contents."
+---
+
+## Description
+
+Reads data from csv file and prints hash of contents.
+
+## Usage
+
+```r
+read_csv_with_hash(csv_file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `csv_file_path` | path to csv file to ingest |
+| `...` | additional arguments for digest or read_csv |
+
+## Value
+
+dataframe of data within file
+
+## Examples
+
+```r
+## Not run: 
+read_csv_with_hash("data/derived/example_data.csv")
+
+## End(Not run)
+```
