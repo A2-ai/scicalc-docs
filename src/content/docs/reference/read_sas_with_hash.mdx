@@ -1,0 +1,34 @@
+---
+title: "Reads data from sas file and prints hash of contents."
+description: "Reads data from sas file and prints hash of contents."
+---
+
+## Description
+
+Reads data from sas file and prints hash of contents.
+
+## Usage
+
+```r
+read_sas_with_hash(sas_file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `sas_file_path` | path to sas file to ingest |
+| `...` | additional arguments to digest or read_sas |
+
+## Value
+
+a dataframe(?) of data within file
+
+## Examples
+
+```r
+## Not run: 
+read_sas_with_hash("data/source/example.sas7bdat")
+
+## End(Not run)
+```

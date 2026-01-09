@@ -1,0 +1,34 @@
+---
+title: "Takes character input and returns standard yspec numeric value for Ethnic"
+description: "Takes character input and returns standard yspec numeric value for Ethnic"
+---
+
+## Description
+
+Takes character input and returns standard yspec numeric value for Ethnic
+
+## Usage
+
+```r
+ethnicn(ethnicc)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `ethnicc` | Ethnic character |
+
+## Value
+
+the standard yspec numeric value for the inputted Ethnic character
+
+## Examples
+
+```r
+ethnicn("HISPANIC OR LATINO") # 1
+
+ethnicn("NOT HISPANIC OR LATINO") # 0
+
+ethnicn("UNKNOWN") # -999
+```

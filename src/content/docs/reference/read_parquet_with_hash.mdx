@@ -1,0 +1,34 @@
+---
+title: "Reads data from parquet file and prints hash of contents."
+description: "Reads data from parquet file and prints hash of contents."
+---
+
+## Description
+
+Reads data from parquet file and prints hash of contents.
+
+## Usage
+
+```r
+read_parquet_with_hash(parquet_file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `parquet_file_path` | path to parquet file to ingest |
+| `...` | additional arguments to digest or read_parquet |
+
+## Value
+
+a tibble of data within file
+
+## Examples
+
+```r
+## Not run: 
+read_parquet_with_hash("data/derived/example_data.parquet")
+
+## End(Not run)
+```

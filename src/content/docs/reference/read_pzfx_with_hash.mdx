@@ -1,0 +1,34 @@
+---
+title: "Reads in table from a prism pzfx file."
+description: "Reads in table from a prism pzfx file."
+---
+
+## Description
+
+Reads in table from a prism pzfx file.
+
+## Usage
+
+```r
+read_pzfx_with_hash(pzfx_file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `pzfx_file_path` | path to pzfx file |
+| `...` | additional arguments to digest or read_pzfx |
+
+## Value
+
+data within the table of the pzfx file
+
+## Examples
+
+```r
+## Not run: 
+read_pzfx_with_hash("mydata.pzfx", table = "experiment1")
+
+## End(Not run)
+```

@@ -1,0 +1,35 @@
+---
+title: "Reads the data from a file (csv or parquet) and prints the hash"
+description: "Reads the data from a file (csv or parquet) and prints the hash"
+---
+
+## Description
+
+Reads the data from a file (csv or parquet) and prints the hash
+
+## Usage
+
+```r
+read_file_with_hash(file_path, ...)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `file_path` | path to data file |
+| `...` | additional arguments to digest, read_csv, read_parquet, read_sas, read_pzfx, read_xpt |
+
+## Value
+
+data within the supplied file
+
+## Examples
+
+```r
+## Not run: 
+dat <- read_file_with_hash("data/derived/PK_data.parquet")
+dat2 <- read_file_with_hash("data/source/data.csv")
+
+## End(Not run)
+```

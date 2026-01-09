@@ -1,0 +1,31 @@
+---
+title: "Calculates eGFR based on Schwartz' equation"
+description: "Calculates eGFR based on Schwartz' equation"
+---
+
+## Description
+
+Calculates eGFR based on Schwartz' equation
+
+## Usage
+
+```r
+schwartz_egfr(height, creat)
+```
+
+## Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `height` | height of patients in cm. |
+| `creat` | Serum creatinine levels in mg/dL |
+
+## Value
+
+eGFR in mL/min/1.73m^2
+
+## Examples
+
+```r
+schwartz_egfr(100, 1)
+```
