@@ -1,0 +1,18 @@
+[1] 1 2 3 4 
+[1] 1 2 3 4 5 
+[1] 2 
+  ID SEX AGE CREAT WEIGHT HEIGHT  RACE      EGFR      BSA BRFC_CLINICAL
+1  1   F  65   1.2     70    165 WHITE  47.38724 1.770960             3
+2  2   M  45   0.9     80    175 BLACK 119.12934 1.956060             1
+3  3   F  70   1.5     60    160 OTHER  34.93361 1.622063             3
+4  4   M  50   1.1     85    180 ASIAN  77.86046 2.048528             2
+  BRFC_REGULATORY
+1               3
+2               1
+3               3
+4               1 
+  ID SEX AGE CREAT WEIGHT HEIGHT  RACE
+1  1   F  65   1.2     70    165 WHITE
+2  2   M  45   0.9     80    175 BLACK
+3  3   F  70   1.5     60    160 OTHER
+4  4   M  50   1.1     85    180 ASIAN 
