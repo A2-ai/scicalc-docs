@@ -1,50 +1,90 @@
 ---
 title: "Calculate Estimated Glomerular Filtration Rate"
-description: "Calculate Estimated Glomerular Filtration Rate"
+description: "Calculate Estimated Glomerular Filtration Rate."
+sidebar:
+  label: "egfr"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Estimated Glomerular Filtration Rate
 
+
+
+
+
+
 ## Usage
 
 ```r
-egfr(sexf, raceb, age, creat, cystc, height, method = "CKDEPI 2021")
+egfr(
+  sexf,
+  raceb,
+  age,
+  creat,
+  ...,
+  cystc = NULL,
+  height = NULL,
+  method = "CKDEPI 2021"
+)
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `sexf` | a boolean representing if the patient is female. |
-| `raceb` | a boolean representing if the patient is black. |
-| `age` | the age of a patient in years. |
-| `creat` | the serum creatinine levels in mg/dL. |
-| `cystc` | the cystatin C levels in mg/L - only used in CKDEPI 2021 cystatin method |
-| `height` | the height of a patient in cm. |
-| `method` | a string specifying the method to use. Available options are "CKDEPI 2009", "MDRD", "CKDEPI 2021", "Schwartz". |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sexf</code></td>
+<td>a boolean representing if the patient is female.</td>
+</tr>
+<tr>
+<td><code>raceb</code></td>
+<td>a boolean representing if the patient is black.</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>the age of a patient in years.</td>
+</tr>
+<tr>
+<td><code>creat</code></td>
+<td>the serum creatinine levels in mg/dL.</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>reserved; must be empty. Arguments after `creat` must be named.</td>
+</tr>
+<tr>
+<td><code>cystc</code></td>
+<td>the cystatin C levels in mg/L - required for the "CKDEPI 2021 cystatin" method.</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>the height of a patient in cm - required for the "Schwartz" method.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>equation to use, one of: [egfr(method = "CKDEPI 2009")](../dot-egfr_ckdepi_2009/), [egfr(method = "MDRD")](../dot-egfr_mdrd/), [egfr(method = "CKDEPI 2021")](../dot-egfr_ckdepi_2021/), [egfr(method = "CKDEPI 2021 cystatin")](../dot-egfr_ckdepi_2021_cystatin/), [egfr(method = "Schwartz")](../dot-egfr_schwartz/).</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 the eGFR calculated based on method.
 
-## See Also
 
-Other renal_function: 
-<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
 
 ## Examples
 
 ```r
-e <- egfr(TRUE, TRUE, 24, 1, "CKDEPI 2009")
+e <- egfr(TRUE, TRUE, 24, 1, method = "CKDEPI 2009")
 
 df <- data.frame(
   "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
@@ -52,12 +92,37 @@ df <- data.frame(
   "AGE" = c(24, 24, 23, 24),
   "CREAT" = c(1, 1, 2, 1)
 )
-df <- dplyr::mutate(df, egfr = egfr(SEXF, RACEB, AGE, CREAT, "CKDEPI 2009"))
+df <- dplyr::mutate(df, egfr = egfr(SEXF, RACEB, AGE, CREAT, method = "CKDEPI 2009"))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/egfr.txt?raw';
+```
+   SEXF RACEB AGE CREAT      egfr
+1  TRUE FALSE  24     1  78.79023
+2 FALSE FALSE  24     1 104.87700
+3  TRUE  TRUE  23     2  39.77968
+4 FALSE FALSE  24     1 104.87700
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+The method implementations:
+[egfr(method = "CKDEPI 2009")](../dot-egfr_ckdepi_2009/),
+[egfr(method = "MDRD")](../dot-egfr_mdrd/),
+[egfr(method = "CKDEPI 2021")](../dot-egfr_ckdepi_2021/),
+[egfr(method = "CKDEPI 2021 cystatin")](../dot-egfr_ckdepi_2021_cystatin/),
+[egfr(method = "Schwartz")](../dot-egfr_schwartz/).
+
+Other renal_function:
+[`aegfr()`](../aegfr/),
+[`crcl()`](../crcl/),
+[`rfc()`](../rfc/)
+
+
+## Concept
+
+renal_function
+
+

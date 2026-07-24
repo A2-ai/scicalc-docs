@@ -1,53 +1,95 @@
 ---
 title: "Read File with Required Hash Match"
-description: "Read File with Required Hash Match"
+description: "Read File with Required Hash Match."
+sidebar:
+  label: "read_hashed_file"
+pagefind: true
 ---
 
 ## Description
 
 Read File with Required Hash Match
 
+
+
+
+
+
 ## Usage
 
 ```r
-read_hashed_file(file_path, hash, ..., algo = "blake3")
+read_hashed_file(
+  file_path,
+  hash,
+  ...,
+  algo = "blake3",
+  reader = NULL,
+  force = FALSE
+)
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `file_path` | path to file with data you want to read |
-| `hash` | hash you expect the file to have |
-| `...` | additional arguments for digest or read_csv, parquet, sas |
-| `algo` | hashing algorithm to use, default is "blake3" |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file_path</code></td>
+<td>path to file with data you want to read</td>
+</tr>
+<tr>
+<td><code>hash</code></td>
+<td>hash you expect the file to have</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>additional arguments for digest or read_csv, parquet, sas, or `reader`</td>
+</tr>
+<tr>
+<td><code>algo</code></td>
+<td>hashing algorithm to use, default is "blake3"</td>
+</tr>
+<tr>
+<td><code>reader</code></td>
+<td>optional function used to read the file, called as `reader(file_path, ...)` once the hash check passes. Required for file extensions this function doesn't know how to read. For a known extension (csv, parquet, sas7bdat, xpt, pzfx, xlsx/xls/xlsm), `reader` is ignored unless `force = TRUE`.</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td>if `TRUE`, use `reader` even for a known extension instead of the built-in reader. Must be `FALSE` (the default) when `reader` is not supplied.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 data object of contents of file_path
 
-## See Also
 
-Other file_io: 
-<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_excel_with_hash`}><code>read_excel_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_csv_with_hash`}><code>write_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_file_with_hash`}><code>write_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_parquet_with_hash`}><code>write_parquet_with_hash</code></a>
 
 ## Examples
 
 ```r
-## Not run: 
+# Not run:
 file_path <- "data/derived/example_pk.parquet"
 
 hash <- 0cfd6da55e6c1e198effe1e584c26d79
 read_hashed_file(file_path, hash)
-
-## End(Not run)
 ```
+
+## See Also
+
+Other file_io:
+[`read_file_with_hash()`](../read_file_with_hash/),
+[`write_file_with_hash()`](../write_file_with_hash/)
+
+
+## Concept
+
+file_io
+
+

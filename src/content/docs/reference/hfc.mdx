@@ -1,11 +1,37 @@
 ---
 title: "Categorize Hepatic Function"
-description: "This function categorizes hepatic function impairment using the National Cancer Institute Organ Dysfunction Working Group (NCI-ODWG) criteria."
+description: "This function categorizes hepatic function impairment using the National Cancer Institute Organ Dysfunction Working Group (NCI-ODWG) criteria. It evaluates aspa"
+sidebar:
+  label: "hfc"
+pagefind: true
 ---
 
 ## Description
 
-This function categorizes hepatic function impairment using the National Cancer Institute Organ Dysfunction Working Group (NCI-ODWG) criteria. It evaluates aspartate aminotransferase (AST) and bilirubin levels relative to their upper limits of normal to determine hepatic impairment severity. The function handles edge cases where bilirubin values are very close to category boundaries using floating-point tolerant comparisons.
+This function categorizes hepatic function impairment using the National Cancer Institute
+Organ Dysfunction Working Group (NCI-ODWG) criteria. It evaluates aspartate aminotransferase
+(AST) and bilirubin levels relative to their upper limits of normal to determine hepatic
+impairment severity. The function handles edge cases where bilirubin values are very close
+to category boundaries using floating-point tolerant comparisons.
+
+## Details
+
+**The NCI-ODWG hepatic function categories are defined as**:
+- 1: Normal: AST ≤ ULN AND bilirubin ≤ ULN
+- 2: Mild impairment: AST > ULN OR bilirubin > ULN but ≤ 1.5 × ULN
+- 3: Moderate impairment: Bilirubin > 1.5 × ULN but ≤ 3 × ULN
+- 4: Severe impairment: Bilirubin > 3 × ULN
+
+
+**Special handling:**
+The function uses `dplyr::near()` for boundary comparisons when bilirubin
+values are very close to 1.5 × ULN or 3 × ULN to handle floating-point precision
+issues that can occur with calculated thresholds.
+
+
+
+
+
 
 ## Usage
 
@@ -15,34 +41,41 @@ hfc(ast, ulnast, bili, ulnbili)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `ast` | Numeric vector of aspartate aminotransferase concentrations (IU/L) |
-| `ulnast` | Numeric vector of upper limit of normal AST values (IU/L). Typically 33 IU/L for most laboratories |
-| `bili` | Numeric vector of total bilirubin concentrations (mg/dL) |
-| `ulnbili` | Numeric vector of upper limit of normal bilirubin values (mg/dL). Typically 1.2 mg/dL for most laboratories |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ast</code></td>
+<td>Numeric vector of aspartate aminotransferase concentrations (IU/L)</td>
+</tr>
+<tr>
+<td><code>ulnast</code></td>
+<td>Numeric vector of upper limit of normal AST values (IU/L). Typically 33 IU/L for most laboratories</td>
+</tr>
+<tr>
+<td><code>bili</code></td>
+<td>Numeric vector of total bilirubin concentrations (mg/dL)</td>
+</tr>
+<tr>
+<td><code>ulnbili</code></td>
+<td>Numeric vector of upper limit of normal bilirubin values (mg/dL). Typically 1.2 mg/dL for most laboratories</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-**The NCI-ODWG hepatic function categories are defined as**:
-
-- 1: Normal: AST ≤ ULN AND bilirubin ≤ ULN
-
-- 2: Mild impairment: AST \> ULN OR bilirubin \> ULN but ≤ 1.5 × ULN
-
-- 3: Moderate impairment: Bilirubin \> 1.5 × ULN but ≤ 3 × ULN
-
-- 4: Severe impairment: Bilirubin \> 3 × ULN
-
-**Special handling:** The function uses `dplyr::near()` for boundary comparisons when bilirubin values are very close to 1.5 × ULN or 3 × ULN to handle floating-point precision issues that can occur with calculated thresholds.
 
 ## Value
 
-Integer vector of hepatic function categories (1-4). Returns `-999` for missing values.
+Integer vector of hepatic function categories (1-4). Returns the value of
+`getOption("scicalc.missing_value")` (default `-999`) for
+missing values.
 
-## References
 
-National Cancer Institute Organ Dysfunction Working Group criteria for hepatic impairment
+
 
 ## Examples
 
@@ -70,12 +103,38 @@ patients <- data.frame(
   ULNBILI = 1.2
 )
 
-patients %>%
+patients |>
   mutate(BHFC = hfc(AST, ULNAST, BILI, ULNBILI))
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/hfc.txt?raw';
+```
+[1] 1
+attr(,"category_standard")
+[1] "NCI-ODWG"
+[1] 1 2 3 4
+attr(,"category_standard")
+[1] "NCI-ODWG"
+[1] 2
+attr(,"category_standard")
+[1] "NCI-ODWG"
+  ID AST ULNAST BILI ULNBILI BHFC
+1  1  15     33  0.8     1.2    1
+2  2  45     33  1.0     1.2    2
+3  3  28     33  2.2     1.2    3
+4  4  35     33  4.5     1.2    2
+5  5  22     33  1.8     1.2    2
+6  6  30     33  0.9     1.2    1
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## References
+
+National Cancer Institute Organ Dysfunction Working Group criteria for hepatic impairment
+
+
+## Concept
+
+hepatic_function
+
+

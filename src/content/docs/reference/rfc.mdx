@@ -1,11 +1,45 @@
 ---
 title: "Categorize Renal Function"
-description: "This function categorizes renal function based on estimated glomerular filtration rate (eGFR), creatinine clearance, or other renal function estimators."
+description: "This function categorizes renal function based on estimated glomerular filtration rate (eGFR), creatinine clearance, or other renal function estimators. It supp"
+sidebar:
+  label: "rfc"
+pagefind: true
 ---
 
 ## Description
 
-This function categorizes renal function based on estimated glomerular filtration rate (eGFR), creatinine clearance, or other renal function estimators. It supports both clinical and regulatory categorization standards and can convert between absolute (mL/min) and relative (mL/min/1.73m²) units using body surface area.
+This function categorizes renal function based on estimated glomerular filtration rate (eGFR),
+creatinine clearance, or other renal function estimators. It supports both clinical and
+regulatory categorization standards and can convert between absolute (mL/min) and relative
+(mL/min/1.73m²) units using body surface area.
+
+## Details
+
+The function applies different categorization schemes based on the `category_standard`:
+
+**Regulatory categories** (uses mL/min):
+- 1: Normal: ≥90 mL/min
+- 2: Mild impairment: 60-89 mL/min
+- 3: Moderate impairment: 30-59 mL/min
+- 4: Severe impairment: \<30 mL/min
+
+
+**Clinical categories** (uses mL/min/1.73m²):
+- 1: Normal: ≥90 mL/min/1.73m²
+- 2: Mild impairment: 60-89 mL/min/1.73m²
+- 3: Moderate impairment: 30-59 mL/min/1.73m²
+- 4: Severe impairment: 15-29 mL/min/1.73m²
+- 5: End-stage: \<15 mL/min/1.73m²
+
+
+When unit conversion is required, the function uses:
+- Absolute to relative: `relative = 1.73 (absolute / bsa)`
+- Relative to absolute: `absolute = relative (bsa / 1.73)`
+
+
+
+
+
 
 ## Usage
 
@@ -20,69 +54,42 @@ rfc(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `estimator` | Numeric vector of renal function estimator values (eGFR, CrCL, etc.) |
-| `bsa` | Numeric vector of body surface area in m² for unit conversion. Required when converting between absolute and relative units |
-| `category_standard` | Character string specifying categorization standard: `"regulatory"` (default) or `"clinical"` |
-| `absolute_units` | Logical indicating if `estimator` units are mL/min (`TRUE`) or mL/min/1.73m² (`FALSE`) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>estimator</code></td>
+<td>Numeric vector of renal function estimator values (eGFR, CrCL, etc.)</td>
+</tr>
+<tr>
+<td><code>bsa</code></td>
+<td>Numeric vector of body surface area in m² for unit conversion. Required when converting between absolute and relative units</td>
+</tr>
+<tr>
+<td><code>category_standard</code></td>
+<td>Character string specifying categorization standard: `"regulatory"` (default) or `"clinical"`</td>
+</tr>
+<tr>
+<td><code>absolute_units</code></td>
+<td>Logical: are `estimator` units mL/min (`TRUE`) or mL/min/1.73m² (`FALSE`)? If `NULL` (default), inferred from the estimator's `scicalc_units` attribute.</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The function applies different categorization schemes based on the `category_standard`:
-
-**Regulatory categories** (uses mL/min):
-
-- 1: Normal: ≥90 mL/min
-
-- 2: Mild impairment: 60-89 mL/min
-
-- 3: Moderate impairment: 30-59 mL/min
-
-- 4: Severe impairment: \<30 mL/min
-
-**Clinical categories** (uses mL/min/1.73m²):
-
-- 1: Normal: ≥90 mL/min/1.73m²
-
-- 2: Mild impairment: 60-89 mL/min/1.73m²
-
-- 3: Moderate impairment: 30-59 mL/min/1.73m²
-
-- 4: Severe impairment: 15-29 mL/min/1.73m²
-
-- 5: End-stage: \<15 mL/min/1.73m²
-
-When unit conversion is required, the function uses:
-
-- Absolute to relative: `relative = 1.73 (absolute / bsa)`
-
-- Relative to absolute: `absolute = relative (bsa / 1.73)`
 
 ## Value
 
-Integer vector of renal impairment categories (1-4 for regulatory, 1-5 for clinical). Returns `-999` for missing values. Includes a `category_standard` attribute indicating the source ("FDA" or "KDIGO").
+Integer vector of renal impairment categories (1-4 for regulatory, 1-5 for clinical).
+Returns the value of `getOption("scicalc.missing_value")` (default `-999`)
+for missing values. Includes a `category_standard` attribute
+indicating the source ("FDA" or "KDIGO").
 
-## References
 
-FDA Guidance for Industry: Pharmacokinetics in Patients with Impaired Renal Function. [https://www.fda.gov/media/78573/download](https://www.fda.gov/media/78573/download)
 
-KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. [https://www.kidney-international.org/action/showPdf?pii=S0085-2538(23)00766-4](https://www.kidney-international.org/action/showPdf?pii=S0085-2538(23)00766-4)
-
-## See Also
-
-<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a> for calculating eGFR, <a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a> for creatinine clearance,
-<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a> for body surface area calculation
-
-Other renal_function: 
-<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
 
 ## Examples
 
@@ -116,7 +123,7 @@ df <- data.frame(
 )
 
 library(dplyr)
-df %>%
+df <- df |>
   mutate(
     BSA = bsa(WEIGHT, HEIGHT, method = "Dubois"),
     EGFR = egfr(is_female(SEX), is_black(RACE), AGE, CREAT),
@@ -130,9 +137,53 @@ df %>%
   )
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/rfc.txt?raw';
+```
+[1] 1 2 3 4
+attr(,"category_standard")
+[1] "FDA"
+[1] 1 2 3 4 5
+attr(,"category_standard")
+[1] "KDIGO"
+[1] 2
+attr(,"category_standard")
+[1] "FDA"
+  ID SEX AGE CREAT WEIGHT HEIGHT  RACE      BSA      EGFR     AEGFR
+1  1   F  65   1.2     70    165 WHITE 1.770960  50.23467  51.42405
+2  2   M  45   0.9     80    175 BLACK 1.956060 107.33541 121.36097
+3  3   F  70   1.5     60    160 OTHER 1.622063  37.25688  34.93236
+4  4   M  50   1.1     85    180 ASIAN 2.048528  81.78201  96.83973
+  BRFC_CLINICAL BRFC_REGULATORY_REL BRFC_REGULATORY_ABS
+1             3                   3                   3
+2             1                   1                   1
+3             3                   3                   3
+4             2                   1                   1
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## References
+
+FDA Guidance for Industry: Pharmacokinetics in Patients with Impaired Renal Function.
+[https://www.fda.gov/media/78573/download](https://www.fda.gov/media/78573/download)
+
+KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.
+[https://www.kidney-international.org/action/showPdf?pii=S0085-2538(23)00766-4](https://www.kidney-international.org/action/showPdf?pii=S0085-2538(23)00766-4)
+
+
+## See Also
+
+[`egfr`](../egfr/) for calculating eGFR, [`crcl`](../crcl/) for creatinine clearance,
+[`bsa`](../bsa/) for body surface area calculation
+
+Other renal_function:
+[`aegfr()`](../aegfr/),
+[`crcl()`](../crcl/),
+[`egfr()`](../egfr/)
+
+
+## Concept
+
+renal_function
+
+

@@ -1,11 +1,21 @@
 ---
 title: "Write CSV File with Hash Output"
-description: "Write CSV File with Hash Output"
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated) This function is deprecated; use."
+sidebar:
+  label: "write_csv_with_hash"
+pagefind: true
 ---
 
 ## Description
 
-Write CSV File with Hash Output
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+This function is deprecated; use [`write_file_with_hash()`](../write_file_with_hash/).
+
+
+
+
+
 
 ## Usage
 
@@ -15,39 +25,44 @@ write_csv_with_hash(data, csv_path, ...)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | a data object to write to file |
-| `csv_path` | the file path to save the csv |
-| `...` | additional arguments to digest or write_csv |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>a data object to write to file</td>
+</tr>
+<tr>
+<td><code>csv_path</code></td>
+<td>the file path to save the csv</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>additional arguments to digest or write_csv</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Nothing, creates csv_path file and prints hash of the file
 
-## See Also
 
-Other file_io: 
-<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_excel_with_hash`}><code>read_excel_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_hashed_file`}><code>read_hashed_file</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_file_with_hash`}><code>write_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_parquet_with_hash`}><code>write_parquet_with_hash</code></a>
 
 ## Examples
 
 ```r
-## Not run: 
+# Not run:
 df <- data.frame(
   "a" = c(1, 2, 3, 4)
   "b" = c("A", "B", "C", "D")
 )
-write_csv_with_hash(df, "test/test.csv")
-
-## End(Not run)
+write_file_with_hash(df, "test/test.csv")
 ```
+
+

@@ -1,11 +1,31 @@
 ---
 title: "Calculate Coefficient of Variation"
-description: "Calculate Coefficient of Variation"
+description: "Calculate Coefficient of Variation."
+sidebar:
+  label: "cv"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Coefficient of Variation
+
+## Details
+
+The coefficient of variation is calculated as:
+$$
+CV = \frac{\sigma}{\mu}
+$$
+
+
+where:
+- $\sigma$ = standard deviation
+- $\mu$ = mean
+
+
+
+
+
 
 ## Usage
 
@@ -15,43 +35,55 @@ cv(x, na.rm = FALSE)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `x` | Input vector to compute CV for. |
-| `na.rm` | boolean to remove NA. default is FALSE |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>Input vector to compute CV for.</td>
+</tr>
+<tr>
+<td><code>na.rm</code></td>
+<td>boolean to remove NA. default is FALSE</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The coefficient of variation is calculated as: 
-
-$$
-CV = \frac{\sigma}{\mu}
-$$
-
- where: 
-- $\sigma$ = standard deviation
-- $\mu$ = mean
 
 ## Value
 
 CV of x. Standard deviation divided by mean. If you want % you'll need to multiply by 100
 
-## See Also
 
-Other statistics: 
-<a href={`${import.meta.env.BASE_URL}reference/cor_df`}><code>cor_df</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_cv`}><code>geom_cv</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_mean`}><code>geom_mean</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_sd`}><code>geom_sd</code></a>
+
 
 ## Examples
 
 ```r
 cv(c(1, 2, 1, 1, 2, 1, 2, 3))
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/cv.txt?raw';
+```
+[1] 0.4578608
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other statistics:
+[`cor_df()`](../cor_df/),
+[`geom_cv()`](../geom_cv/),
+[`geom_mean()`](../geom_mean/),
+[`geom_sd()`](../geom_sd/)
+
+
+## Concept
+
+statistics
+
+

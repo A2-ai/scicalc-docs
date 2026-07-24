@@ -1,0 +1,94 @@
+---
+title: "Check if Race is Unspecified"
+description: "`TRUE` for a race value that is present but matches none of the known categories (`is_white`, `is_black`, `is_asian`, `is_american_native`, `is_pacific_islander"
+sidebar:
+  label: "is_unspecified"
+pagefind: true
+---
+
+## Description
+
+`TRUE` for a race value that is present but matches none of the known
+categories (`is_white`, `is_black`, `is_asian`, `is_american_native`,
+`is_pacific_islander`, `is_other`). `"unknown"` and `NA` are treated as
+missing (not unspecified) and return `FALSE`. When unspecified values are
+found a warning is emitted naming the distinct offenders.
+
+
+
+
+
+
+## Usage
+
+```r
+is_unspecified(x, known = character(0))
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>input character representing race</td>
+</tr>
+<tr>
+<td><code>known</code></td>
+<td>optional character vector of additional recognized values to treat as specified (used by [`racen()`](../racen/) to honor `scicalc.racen_config`).</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+boolean representing an unrecognized race value
+
+
+
+## Examples
+
+```r
+is_unspecified("ROMAN LATIN")
+
+is_unspecified("WHITE")
+
+is_unspecified("UNKNOWN")
+```
+### Output
+
+```
+[1] TRUE
+[1] FALSE
+[1] FALSE
+```
+
+
+## See Also
+
+Other demographics:
+[`ethnicn()`](../ethnicn/),
+[`is_american_native()`](../is_american_native/),
+[`is_asian()`](../is_asian/),
+[`is_black()`](../is_black/),
+[`is_female()`](../is_female/),
+[`is_hispanic_or_latino()`](../is_hispanic_or_latino/),
+[`is_not_hispanic_or_latino()`](../is_not_hispanic_or_latino/),
+[`is_other()`](../is_other/),
+[`is_pacific_islander()`](../is_pacific_islander/),
+[`is_white()`](../is_white/),
+[`racen()`](../racen/),
+[`sexf()`](../sexf/)
+
+
+## Concept
+
+demographics
+
+

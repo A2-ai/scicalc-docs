@@ -1,0 +1,67 @@
+---
+title: "Test for the Missing Value Indicator"
+description: "Returns `TRUE` for elements equal to the missing value indicator (`getOption(\"scicalc. missing_value\")`, default `-999`), e. g. `dplyr::filter(df, !is_missing_v"
+sidebar:
+  label: "is_missing_value"
+pagefind: true
+---
+
+## Description
+
+Returns `TRUE` for elements equal to the missing value indicator
+(`getOption("scicalc.missing_value")`, default `-999`), e.g.
+`dplyr::filter(df, !is_missing_value(NTFD))`.
+
+`NA` elements return `FALSE` (they are a separate representation of missing,
+not the sentinel).
+
+
+
+
+
+
+## Usage
+
+```r
+is_missing_value(x, missing_value = getOption("scicalc.missing_value", -999))
+```
+
+## Arguments
+
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>a numeric vector.</td>
+</tr>
+<tr>
+<td><code>missing_value</code></td>
+<td>the sentinel to test against. Defaults to `getOption("scicalc.missing_value", -999)`.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+## Value
+
+a logical vector the same length as `x`.
+
+
+
+## Examples
+
+```r
+is_missing_value(c(1, -999, 3))
+```
+### Output
+
+```
+[1] FALSE  TRUE FALSE
+```
+
+

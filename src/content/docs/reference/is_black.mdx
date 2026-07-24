@@ -1,11 +1,19 @@
 ---
 title: "Check if Race is Black"
-description: "Check if Race is Black"
+description: "Check if Race is Black."
+sidebar:
+  label: "is_black"
+pagefind: true
 ---
 
 ## Description
 
 Check if Race is Black
+
+
+
+
+
 
 ## Usage
 
@@ -15,26 +23,26 @@ is_black(x)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `x` | input character representing race |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>input character representing race</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 boolean representing Race == Black
 
-## See Also
 
-Other demographics: 
-<a href={`${import.meta.env.BASE_URL}reference/ethnicn`}><code>ethnicn</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_asian`}><code>is_asian</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_female`}><code>is_female</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_hispanic_or_latino`}><code>is_hispanic_or_latino</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_not_hispanic_or_latino`}><code>is_not_hispanic_or_latino</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_other`}><code>is_other</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_white`}><code>is_white</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/racen`}><code>racen</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/sexf`}><code>sexf</code></a>
 
 ## Examples
 
@@ -45,9 +53,34 @@ is_black(c("AFRICAN AMERICAN", "BLACK"))
 
 is_black(2)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/is_black.txt?raw';
+```
+[1] FALSE
+[1] TRUE TRUE
+[1] TRUE
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other demographics:
+[`ethnicn()`](../ethnicn/),
+[`is_american_native()`](../is_american_native/),
+[`is_asian()`](../is_asian/),
+[`is_female()`](../is_female/),
+[`is_hispanic_or_latino()`](../is_hispanic_or_latino/),
+[`is_not_hispanic_or_latino()`](../is_not_hispanic_or_latino/),
+[`is_other()`](../is_other/),
+[`is_pacific_islander()`](../is_pacific_islander/),
+[`is_unspecified()`](../is_unspecified/),
+[`is_white()`](../is_white/),
+[`racen()`](../racen/),
+[`sexf()`](../sexf/)
+
+
+## Concept
+
+demographics
+
+

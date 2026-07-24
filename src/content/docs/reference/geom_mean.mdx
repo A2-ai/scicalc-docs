@@ -1,11 +1,26 @@
 ---
 title: "Calculate Geometric Mean"
-description: "Calculate Geometric Mean"
+description: "Calculate Geometric Mean."
+sidebar:
+  label: "geom_mean"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Geometric Mean
+
+## Details
+
+The geometric mean is calculated as:
+$$
+GM = \exp\left(\mathbb{E}[\log(x)]\right)
+$$
+
+
+
+
+
 
 ## Usage
 
@@ -15,39 +30,55 @@ geom_mean(x, na.rm = FALSE)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `x` | vector to compute geometric mean of |
-| `na.rm` | boolean to remove NA from vector in calcualtion. Default is False |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>vector to compute geometric mean of</td>
+</tr>
+<tr>
+<td><code>na.rm</code></td>
+<td>boolean to remove NA from vector in calcualtion. Default is False</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The geometric mean is calculated as: 
-
-$$
-GM = \exp\left(\mathbb{E}[\log(x)]\right)
-$$
 
 ## Value
 
 geometric mean of input vector x
 
-## See Also
 
-Other statistics: 
-<a href={`${import.meta.env.BASE_URL}reference/cor_df`}><code>cor_df</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/cv`}><code>cv</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_cv`}><code>geom_cv</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_sd`}><code>geom_sd</code></a>
+
 
 ## Examples
 
 ```r
 geom_mean(c(1, 2, 3, 2, 1))
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/geom_mean.txt?raw';
+```
+[1] 1.643752
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other statistics:
+[`cor_df()`](../cor_df/),
+[`cv()`](../cv/),
+[`geom_cv()`](../geom_cv/),
+[`geom_sd()`](../geom_sd/)
+
+
+## Concept
+
+statistics
+
+

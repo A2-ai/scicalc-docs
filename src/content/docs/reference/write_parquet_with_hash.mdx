@@ -1,11 +1,21 @@
 ---
 title: "Write Parquet File with Hash Output"
-description: "Write Parquet File with Hash Output"
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated) This function is deprecated; use."
+sidebar:
+  label: "write_parquet_with_hash"
+pagefind: true
 ---
 
 ## Description
 
-Write Parquet File with Hash Output
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+This function is deprecated; use [`write_file_with_hash()`](../write_file_with_hash/).
+
+
+
+
+
 
 ## Usage
 
@@ -15,39 +25,44 @@ write_parquet_with_hash(data, parquet_path, ...)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | the data object to save to parquet_path |
-| `parquet_path` | the path to the desired parquet destination |
-| `...` | additional arguments to digest and write_parquet |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>the data object to save to parquet_path</td>
+</tr>
+<tr>
+<td><code>parquet_path</code></td>
+<td>the path to the desired parquet destination</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>additional arguments to digest and write_parquet</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Nothing. creates parquet_path file and prints hash
 
-## See Also
 
-Other file_io: 
-<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_excel_with_hash`}><code>read_excel_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_hashed_file`}><code>read_hashed_file</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_csv_with_hash`}><code>write_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_file_with_hash`}><code>write_file_with_hash</code></a>
 
 ## Examples
 
 ```r
-## Not run: 
+# Not run:
 df <- data.frame(
   "a" = c(1, 2, 3, 4)
   "b" = c("A", "B", "C", "D")
 )
-write_parquet_with_hash(df, "test/test.parquet")
-
-## End(Not run)
+write_file_with_hash(df, "test/test.parquet")
 ```
+
+

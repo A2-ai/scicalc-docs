@@ -1,11 +1,35 @@
 ---
 title: "Calculate eGFR Using MDRD Equation"
-description: "Calculate eGFR Using MDRD Equation"
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated) This function is deprecated; use with `met"
+sidebar:
+  label: "mdrd_egfr"
+pagefind: true
 ---
 
 ## Description
 
-Calculate eGFR Using MDRD Equation
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+This function is deprecated; use [`egfr()`](../egfr/) with `method = "MDRD"`.
+
+## Details
+
+The MDRD equation:
+$$
+eGFR = 175 \cdot S_{cr}^{-1.154} \cdot A^{-0.203} \cdot 0.742^F \cdot 1.212^B
+$$
+
+
+where:
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+- $B$ = 1 (Black) or 0 (other)
+
+
+
+
+
 
 ## Usage
 
@@ -15,60 +39,44 @@ mdrd_egfr(sexf, raceb, age, creat)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `sexf` | a boolean representing if the patient is female. |
-| `raceb` | a boolean representing if the patient is black. |
-| `age` | the age of the patient in years |
-| `creat` | the serum creatinine levels in mg/dL |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sexf</code></td>
+<td>a boolean representing if the patient is female.</td>
+</tr>
+<tr>
+<td><code>raceb</code></td>
+<td>a boolean representing if the patient is black.</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>the age of the patient in years</td>
+</tr>
+<tr>
+<td><code>creat</code></td>
+<td>the serum creatinine levels in mg/dL</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The MDRD equation: 
-
-$$
-eGFR = 175 \cdot S_{cr}^{-1.154} \cdot A^{-0.203} \cdot 0.742^F \cdot 1.212^B
-$$
-
- where: 
-- $S_{cr}$ = serum creatinine (mg/dL)
-- $A$ = age (years)
-- $F$ = 1 (female) or 0 (male)
-- $B$ = 1 (Black) or 0 (other)
 
 ## Value
 
 the eGFR in mL/min/1.73 m^2
 
-## See Also
 
-Other renal_function: 
-<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr_cystatin`}><code>ckdepi_2021_egfr_cystatin</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
+
 
 ## Examples
 
 ```r
-e <- mdrd_egfr(TRUE, TRUE, 24, 1)
-
-df <- data.frame(
-  "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
-  "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
-  "AGE" = c(24, 24, 23, 24),
-  "CREAT" = c(1, 1, 2, 1)
-)
-df <- dplyr::mutate(df, egfr = mdrd_egfr(SEXF, RACEB, AGE, CREAT))
-df
+e <- egfr(TRUE, TRUE, 24, 1, method = "MDRD")
 ```
 
-### Output
 
-import exampleOutput from '/examples/text/mdrd_egfr.txt?raw';
-
-<pre style="overflow-x: auto;">{exampleOutput}</pre>

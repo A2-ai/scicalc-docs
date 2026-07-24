@@ -1,0 +1,420 @@
+---
+title: "scicalc"
+pagefind: true
+---
+
+# Scicalc
+
+Scicalc is a package of functions commonly used at A2-Ai. We hope this
+package will ease data assembly and allow for a more reproducible code
+across analysts and projects. It is in no way complete or all
+encompassing, but we hope this is a good start. Please let us know if
+there are additional functions we should include!
+
+``` r
+library(scicalc)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+```
+
+## Reading in data
+
+We’ll read in data from the package’s installed `extdata` directory
+using `system.file()`. In R packages, extra files go in the `inst`
+directory, which becomes accessible via `system.file()` after
+installation.
+
+``` r
+data_source <- system.file("extdata", "data", "source", package = "scicalc")
+list.files(data_source)
+#> [1] "dm.sas7bdat"     "lb.csv"          "pc.parquet"      "test_excel.xlsx"
+#> [5] "test.txt"        "vs.parquet"
+```
+
+This is a contrived example, but there are several different file types
+in source data representing different SDTM domains. As well as a
+`test.txt` file. We can use the `read_file_with_hash` function to read
+in all the files in this source directory. No more creating
+`read_file_type_with_hash` functions in each script!
+
+``` r
+raw_data <- purrr::map(
+  list.files(data_source, full.names = TRUE),
+  scicalc::read_file_with_hash
+) |>
+  purrr::set_names(tools::file_path_sans_ext(list.files(data_source)))
+#> dm.sas7bdat: d32bfd4785ba4c1a405caa1314796c911e97727064ecf2fb987386150dafe15f
+#> lb.csv: 577007ecd6292a122b6fdf48add5112ba0976d43db617bb087d8fca07da5b126
+#> Rows: 12 Columns: 11
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (4): CREATU, CYSTCU, ASTU, BILIU
+#> dbl (7): ID, CREAT, CYSTC, AST, ULNAST, BILI, ULNBILI
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> pc.parquet: 894693336ec5e4deb6d707613e35e0206edb47858b119c0fb7684d2240ba294b
+#> test_excel.xlsx: 99bf0f59e74683f3173aba85b083dd928f827d6619b01e1afe80dc1830e7859d
+#> Sheets in test_excel.xlsx: model_summary, sheet with space, empty
+#> Warning in .f(.x[[i]], ...): File type: txt not currently supported. Supply a `reader` function to read this file type.
+#> vs.parquet: c73eece828a6b0cb4a139b10269d47ba1ce8a134ccf66656b64cc98482eef9d9
+```
+
+These hashes come from `digest::digest`’s default algorithm `md5`, but
+we can alter this by supplying `algo = 'blake3'` to the
+read_file_with_hash function.
+
+``` r
+raw_data <- purrr::map(
+  list.files(data_source, full.names = TRUE),
+  scicalc::read_file_with_hash,
+  algo = "blake3"
+) |>
+  purrr::set_names(tools::file_path_sans_ext(list.files(data_source)))
+#> dm.sas7bdat: d32bfd4785ba4c1a405caa1314796c911e97727064ecf2fb987386150dafe15f
+#> lb.csv: 577007ecd6292a122b6fdf48add5112ba0976d43db617bb087d8fca07da5b126
+#> Rows: 12 Columns: 11
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (4): CREATU, CYSTCU, ASTU, BILIU
+#> dbl (7): ID, CREAT, CYSTC, AST, ULNAST, BILI, ULNBILI
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> pc.parquet: 894693336ec5e4deb6d707613e35e0206edb47858b119c0fb7684d2240ba294b
+#> test_excel.xlsx: 99bf0f59e74683f3173aba85b083dd928f827d6619b01e1afe80dc1830e7859d
+#> Sheets in test_excel.xlsx: model_summary, sheet with space, empty
+#> Warning in .f(.x[[i]], ...): File type: txt not currently supported. Supply a `reader` function to read this file type.
+#> vs.parquet: c73eece828a6b0cb4a139b10269d47ba1ce8a134ccf66656b64cc98482eef9d9
+```
+
+``` r
+names(raw_data)
+#> [1] "dm"         "lb"         "pc"         "test_excel" "test"      
+#> [6] "vs"
+```
+
+We can see that each different file type was read with
+read_file_with_hash and saved to `raw_data`. We also got a warning for
+`test.txt` file was not currently supported. If there are any other file
+types you commonly read and want to print a hash besides `csv`,
+`parquet`, and `sas7bdat` please reach out so we can add that
+functionality! Behind the scenes of `read_file_with_hash` the extension
+of the file is determined and a corresponding function such as
+`read_parquet_with_hash` is called. You can call either, but I would
+recommend using the general `read_file_with_hash`.
+
+## Simple data analysis
+
+Let’s do some bmi and bsa caclulations with the data in the vs domain
+
+``` r
+df <- raw_data$pc
+
+df <- df |>
+  dplyr::mutate(
+    .data = raw_data$vs,
+    BBMI = scicalc::bmi(WEIGHT, HEIGHT),
+    DBSA = scicalc::bsa(WEIGHT, HEIGHT),
+    MBSA = scicalc::bsa(WEIGHT, HEIGHT, method = "mosteller")
+  )
+df
+#> # A tibble: 12 × 8
+#>    ID    HEIGHT WEIGHT    DV  NTLD  BBMI  DBSA  MBSA
+#>    <fct>  <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 1        174     70    10  0     23.1  1.84  1.84
+#>  2 1        174     70   150  0.25  23.1  1.84  1.84
+#>  3 1        174     70    70  1     23.1  1.84  1.84
+#>  4 1        174     70     9  8     23.1  1.84  1.84
+#>  5 2        201     80     7  0     19.8  2.16  2.11
+#>  6 2        201     80   140  0.25  19.8  2.16  2.11
+#>  7 2        201     80    60  1     19.8  2.16  2.11
+#>  8 2        201     80     7  8     19.8  2.16  2.11
+#>  9 3        190     75    11  0     20.8  2.02  1.99
+#> 10 3        190     75   156  0.25  20.8  2.02  1.99
+#> 11 3        190     75    70  1     20.8  2.02  1.99
+#> 12 3        190     75     7  8     20.8  2.02  1.99
+```
+
+Now we can verify the lab units before moving on - remember this is a
+contrived dataset, but the workflow should be somewhat similar.
+
+``` r
+dflb <- raw_data$lb |>
+  dplyr::select(c("ID", "CREAT", "CYSTC", "AST", "BILI", )) |>
+  dplyr::distinct() |>
+  tidyr::pivot_longer(
+    cols = c("CREAT", "CYSTC", "AST", "BILI"),
+    names_to = "LBTESTCD", values_to = "LBORRES"
+  )
+
+dfu <- raw_data$lb |>
+  dplyr::select(c("ID", "CREATU", "CYSTCU", "ASTU", "BILIU")) |>
+  dplyr::distinct() |>
+  tidyr::pivot_longer(
+    cols = c("CREATU", "CYSTCU", "ASTU", "BILIU"),
+    names_to = "LBTESTCDU", values_to = "LBORRESU"
+  )
+
+lb <- dflb |>
+  dplyr::mutate(LBORRESU = dfu$LBORRESU)
+
+lb
+#> # A tibble: 12 × 4
+#>       ID LBTESTCD LBORRES LBORRESU
+#>    <dbl> <chr>      <dbl> <chr>   
+#>  1     1 CREAT        1   mg/dL   
+#>  2     1 CYSTC        0.4 mg/L    
+#>  3     1 AST         15   U/L     
+#>  4     1 BILI         0.8 mg/dL   
+#>  5     2 CREAT        4   mg/dL   
+#>  6     2 CYSTC        0.9 mg/L    
+#>  7     2 AST         29   U/L     
+#>  8     2 BILI         1.9 mg/dL   
+#>  9     3 CREAT        3   mg/dL   
+#> 10     3 CYSTC        0.7 mg/L    
+#> 11     3 AST         38   U/L     
+#> 12     3 BILI         1.1 mg/dL
+```
+
+``` r
+if (scicalc::check_for_unique_units(lb$LBTESTCD, lb$LBORRESU)) {
+  print("Units are 1:1!")
+} else {
+  stop("Error with units!")
+}
+#> [1] "Units are 1:1!"
+```
+
+``` r
+scicalc::get_unique_units_df(lb$LBTESTCD, lb$LBORRESU)
+#>   PARAM  UNIT
+#> 1 CREAT mg/dL
+#> 2 CYSTC  mg/L
+#> 3   AST   U/L
+#> 4  BILI mg/dL
+```
+
+Now we can use the lab data to calculate hepatic function.
+
+``` r
+df <- df |>
+  dplyr::mutate(
+    .data = raw_data$lb,
+    BHFC = scicalc::hfc(AST, ULNAST, BILI, ULNBILI),
+  )
+df
+#> # A tibble: 12 × 19
+#>    ID    CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI ASTU  BILIU HEIGHT
+#>    <fct> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl> <chr> <chr>  <dbl>
+#>  1 1         1 mg/dL    0.4 mg/L      15     33   0.8     1.2 U/L   mg/dL    174
+#>  2 1         1 mg/dL    0.4 mg/L      15     33   0.8     1.2 U/L   mg/dL    174
+#>  3 1         1 mg/dL    0.4 mg/L      15     33   0.8     1.2 U/L   mg/dL    174
+#>  4 1         1 mg/dL    0.4 mg/L      15     33   0.8     1.2 U/L   mg/dL    174
+#>  5 2         4 mg/dL    0.9 mg/L      29     33   1.9     1.2 U/L   mg/dL    201
+#>  6 2         4 mg/dL    0.9 mg/L      29     33   1.9     1.2 U/L   mg/dL    201
+#>  7 2         4 mg/dL    0.9 mg/L      29     33   1.9     1.2 U/L   mg/dL    201
+#>  8 2         4 mg/dL    0.9 mg/L      29     33   1.9     1.2 U/L   mg/dL    201
+#>  9 3         3 mg/dL    0.7 mg/L      38     33   1.1     1.2 U/L   mg/dL    190
+#> 10 3         3 mg/dL    0.7 mg/L      38     33   1.1     1.2 U/L   mg/dL    190
+#> 11 3         3 mg/dL    0.7 mg/L      38     33   1.1     1.2 U/L   mg/dL    190
+#> 12 3         3 mg/dL    0.7 mg/L      38     33   1.1     1.2 U/L   mg/dL    190
+#> # ℹ 7 more variables: WEIGHT <dbl>, DV <dbl>, NTLD <dbl>, BBMI <dbl>,
+#> #   DBSA <dbl>, MBSA <dbl>, BHFC <dbl>
+```
+
+Now we’ll need the demographics needed for Creatinine clearance,
+estimated glomerular filtration rate, and renal function.
+
+``` r
+df <- df |>
+  dplyr::mutate(
+    .data = raw_data$dm,
+    CRCL = scicalc::crcl(scicalc::is_female(SEX), AGE, CREAT, WEIGHT),
+    ckdepi_2009_egfr = scicalc::egfr(
+      sexf = scicalc::is_female(SEX),
+      raceb = scicalc::is_black(RACE),
+      age = AGE,
+      creat = CREAT,
+      method = "CKDEPI 2009"
+    ),
+    ckdepi_2021_egfr = scicalc::egfr(
+      sexf = scicalc::is_female(SEX),
+      age = AGE,
+      creat = CREAT,
+      method = "CKDEPI 2021"
+    ),
+    ckdepi_2021_egfr_cystatin = scicalc::egfr(
+      sexf = scicalc::is_female(SEX),
+      age = AGE,
+      creat = CREAT,
+      cystc = CYSTC,
+      method = "CKDEPI 2021 CYSTATIN"
+    ),
+    mdrd_egfr = scicalc::egfr(
+      sexf = scicalc::is_female(SEX),
+      raceb = scicalc::is_black(RACE),
+      age = AGE,
+      creat = CREAT,
+      method = "MDRD"
+    ),
+    schwartz_egfr = scicalc::egfr(
+      height = HEIGHT,
+      creat = CREAT,
+      method = "Schwartz"
+    ),
+    BSA = scicalc::bsa(WEIGHT, HEIGHT),
+    BRFC = scicalc::rfc(ckdepi_2009_egfr, bsa = BSA, absolute_units = FALSE),
+  )
+
+df
+#> # A tibble: 12 × 30
+#>    ID    SEX   RACE    AGE CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI
+#>    <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
+#>  1 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  2 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  3 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  4 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  5 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  6 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  7 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  8 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  9 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 10 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 11 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 12 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> # ℹ 18 more variables: ASTU <chr>, BILIU <chr>, HEIGHT <dbl>, WEIGHT <dbl>,
+#> #   DV <dbl>, NTLD <dbl>, BBMI <dbl>, DBSA <dbl>, MBSA <dbl>, BHFC <dbl>,
+#> #   CRCL <dbl>, ckdepi_2009_egfr <dbl>, ckdepi_2021_egfr <dbl>,
+#> #   ckdepi_2021_egfr_cystatin <dbl>, mdrd_egfr <dbl>, schwartz_egfr <dbl>,
+#> #   BSA <dbl>, BRFC <dbl>
+```
+
+## Writting data
+
+We can use the `write_file_with_hash` to write `parquet` files (We
+highly recommend you write all data to parquet unless there is a
+specific need for other file type). We just need to supply a path to the
+file if the directory the file should be written to does not exist, this
+function will create it and all directories needed on the path. This
+function won’t let us overwrite the file unless we supply
+`overwrite = TRUE`. Like `read_file_with_hash` we can choose which
+algorithm to use for the digest.
+
+``` r
+data_derived <- file.path(tempdir(), "scicalc_demo", "derived")
+if (!file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
+  scicalc::write_file_with_hash(
+    df, file.path(data_derived, "pk_data_v01.parquet"),
+    algo = "blake3"
+  )
+} else {
+  print("Overwriting data!")
+  scicalc::write_file_with_hash(
+    df, file.path(data_derived, "pk_data_v01.parquet"),
+    overwrite = TRUE, algo = "blake3"
+  )
+}
+#> /var/folders/bx/l0m1kftd7m93lvrc4m3_309c0000gn/T//RtmpY7Rh8D/scicalc_demo/derived/pk_data_v01.parquet: 984315e276f3fcb0910347587f3bfb51db5359c4ee0b62dbbaac9a940255546a
+```
+
+## Reading in derived data
+
+Now if we want to read in the derived data and verify it is the data we
+think it is we can use `read_hashed_file`. This function will only let
+you ingest the data if the hash you supply matches the hash of the
+contents of the file. Here I’ve supplied the `blake3` hash which does
+not match the `md5` hash digest uses by default. We have two options,
+tell `read_hashed_file` to use `algo = 'blake3'` or supply the `md5`
+hash.
+
+``` r
+hash <- digest::digest(file.path(data_derived, "pk_data_v01.parquet")) # This is a hash of the string to the file type so it will not match the hash for contents of the file.
+print(hash)
+#> [1] "4a836c745f899dafaec293f0a1582d0f"
+# This hash is incorrect so the function errors
+if (file.exists(file.path(data_derived, "pk_data_v01.parquet"))) {
+  testthat::expect_error(scicalc::read_hashed_file(file.path(data_derived, "pk_data_v01.parquet"), hash))
+}
+```
+
+1.  updated algo argument works:
+
+``` r
+correct_hash <- digest::digest(file = file.path(data_derived, "pk_data_v01.parquet"), algo = "blake3")
+print(correct_hash)
+#> [1] "984315e276f3fcb0910347587f3bfb51db5359c4ee0b62dbbaac9a940255546a"
+```
+
+``` r
+data <- scicalc::read_hashed_file(
+  file.path(data_derived, "pk_data_v01.parquet"),
+  algo = "blake3",
+  correct_hash
+)
+data
+#> # A tibble: 12 × 30
+#>    ID    SEX   RACE    AGE CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI
+#>  * <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
+#>  1 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  2 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  3 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  4 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  5 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  6 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  7 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  8 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  9 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 10 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 11 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 12 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> # ℹ 18 more variables: ASTU <chr>, BILIU <chr>, HEIGHT <dbl>, WEIGHT <dbl>,
+#> #   DV <dbl>, NTLD <dbl>, BBMI <dbl>, DBSA <dbl>, MBSA <dbl>, BHFC <dbl>,
+#> #   CRCL <dbl>, ckdepi_2009_egfr <dbl>, ckdepi_2021_egfr <dbl>,
+#> #   ckdepi_2021_egfr_cystatin <dbl>, mdrd_egfr <dbl>, schwartz_egfr <dbl>,
+#> #   BSA <dbl>, BRFC <dbl>
+```
+
+2.  giving the `md5` hash works
+
+``` r
+md5_hash <- digest::digest(file = file.path(data_derived, "pk_data_v01.parquet"), algo = "md5")
+print(md5_hash)
+#> [1] "2189dce3e791ca81e2971e6e6cedfa8f"
+```
+
+``` r
+data <- scicalc::read_hashed_file(
+  file.path(data_derived, "pk_data_v01.parquet"),
+  md5_hash,
+  algo = "md5"
+)
+data
+#> # A tibble: 12 × 30
+#>    ID    SEX   RACE    AGE CREAT CREATU CYSTC CYSTCU   AST ULNAST  BILI ULNBILI
+#>  * <fct> <chr> <chr> <dbl> <dbl> <chr>  <dbl> <chr>  <dbl>  <dbl> <dbl>   <dbl>
+#>  1 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  2 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  3 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  4 1     F     WHITE    24     1 mg/dL    0.4 mg/L      15     33   0.8     1.2
+#>  5 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  6 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  7 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  8 2     M     BLACK    22     4 mg/dL    0.9 mg/L      29     33   1.9     1.2
+#>  9 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 10 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 11 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> 12 3     F     ASIAN    35     3 mg/dL    0.7 mg/L      38     33   1.1     1.2
+#> # ℹ 18 more variables: ASTU <chr>, BILIU <chr>, HEIGHT <dbl>, WEIGHT <dbl>,
+#> #   DV <dbl>, NTLD <dbl>, BBMI <dbl>, DBSA <dbl>, MBSA <dbl>, BHFC <dbl>,
+#> #   CRCL <dbl>, ckdepi_2009_egfr <dbl>, ckdepi_2021_egfr <dbl>,
+#> #   ckdepi_2021_egfr_cystatin <dbl>, mdrd_egfr <dbl>, schwartz_egfr <dbl>,
+#> #   BSA <dbl>, BRFC <dbl>
+```

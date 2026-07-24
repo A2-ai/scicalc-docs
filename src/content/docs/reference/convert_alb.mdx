@@ -1,11 +1,19 @@
 ---
 title: "Convert Albumin Concentration Units"
-description: "Convert Albumin Concentration Units"
+description: "Convert Albumin Concentration Units."
+sidebar:
+  label: "convert_alb"
+pagefind: true
 ---
 
 ## Description
 
 Convert Albumin Concentration Units
+
+
+
+
+
 
 ## Usage
 
@@ -15,19 +23,26 @@ convert_alb(alb)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `alb` | albumin concentration (g/L) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>alb</code></td>
+<td>albumin concentration (g/L)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Albumin concentration (g/dL)
 
-## See Also
 
-Other unit_conversion: 
-<a href={`${import.meta.env.BASE_URL}reference/convert_bili`}><code>convert_bili</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/convert_creat`}><code>convert_creat</code></a>
 
 ## Examples
 
@@ -39,14 +54,37 @@ df <- data.frame(
   ALB = c(35, 40, 28, 45)
 )
 
-df <- df %>%
-  dplyr::group_by(ID) %>%
+df <- df |>
+  dplyr::group_by(ID) |>
   dplyr::mutate(ALBBL = convert_alb(ALB))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/convert_alb.txt?raw';
+```
+[1] 4
+attr(,"scicalc_units")
+[1] "g/dL"
+# A tibble: 4 × 3
+# Groups:   ID [4]
+     ID   ALB ALBBL
+  <dbl> <dbl> <dbl>
+1     1    35   3.5
+2     2    40   4  
+3     3    28   2.8
+4     4    45   4.5
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other unit_conversion:
+[`convert_bili()`](../convert_bili/),
+[`convert_creat()`](../convert_creat/)
+
+
+## Concept
+
+unit_conversion
+
+

@@ -1,11 +1,31 @@
 ---
 title: "Calculate Body Mass Index"
-description: "Calculate Body Mass Index"
+description: "Calculate Body Mass Index."
+sidebar:
+  label: "bmi"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Body Mass Index
+
+## Details
+
+BMI is calculated using the formula:
+$$
+BMI = \frac{W}{(H/100)^2}
+$$
+
+
+where:
+- $W$ = weight (kg)
+- $H$ = height (cm)
+
+
+
+
+
 
 ## Usage
 
@@ -15,36 +35,31 @@ bmi(weight, height)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `weight` | weight of subject (kg) |
-| `height` | height of subject (cm) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weight</code></td>
+<td>weight of subject (kg)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>height of subject (cm)</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-BMI is calculated using the formula: 
-
-$$
-BMI = \frac{W}{(H/100)^2}
-$$
-
- where: 
-- $W$ = weight (kg)
-- $H$ = height (cm)
 
 ## Value
 
 the BMI value (kg/m^2)
 
-## See Also
 
-Other body_composition: 
-<a href={`${import.meta.env.BASE_URL}reference/aibw`}><code>aibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmic`}><code>bmic</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mosteller_bsa`}><code>mosteller_bsa</code></a>
+
 
 ## Examples
 
@@ -58,9 +73,28 @@ df <- data.frame(
 df <- dplyr::mutate(df, bmi = bmi(WT, HT))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/bmi.txt?raw';
+```
+     WT  HT      bmi
+1 80.56 167 28.88594
+2 71.53 161 27.59539
+3 81.04 163 30.50171
+4 70.17 164 26.08938
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other body_composition:
+[`aibw()`](../aibw/),
+[`bmic()`](../bmic/),
+[`bsa()`](../bsa/),
+[`ibw()`](../ibw/)
+
+
+## Concept
+
+body_composition
+
+

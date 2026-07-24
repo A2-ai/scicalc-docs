@@ -1,0 +1,34 @@
+---
+title: "MDRD (4-variable) eGFR equation"
+description: "The equation used by with `method = \"MDRD\"`."
+sidebar:
+  label: ".egfr_mdrd"
+pagefind: true
+---
+
+## Description
+
+The equation used by [`egfr()`](../egfr/) with `method = "MDRD"`.
+
+## Details
+
+The MDRD equation:
+$$
+eGFR = 175 \cdot S_{cr}^{-1.154} \cdot A^{-0.203} \cdot 0.742^F \cdot 1.212^B
+$$
+
+
+where:
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+- $B$ = 1 (Black) or 0 (other)
+
+
+
+
+
+
+
+
+

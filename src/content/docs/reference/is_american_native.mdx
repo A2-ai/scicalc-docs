@@ -1,14 +1,14 @@
 ---
-title: "Check if Ethnicity is Hispanic or Latino"
-description: "Check if Ethnicity is Hispanic or Latino."
+title: "Check if Race is American Native"
+description: "Check if Race is American Native."
 sidebar:
-  label: "is_hispanic_or_latino"
+  label: "is_american_native"
 pagefind: true
 ---
 
 ## Description
 
-Check if Ethnicity is Hispanic or Latino
+Check if Race is American Native
 
 
 
@@ -18,7 +18,7 @@ Check if Ethnicity is Hispanic or Latino
 ## Usage
 
 ```r
-is_hispanic_or_latino(x)
+is_american_native(x)
 ```
 
 ## Arguments
@@ -31,7 +31,7 @@ is_hispanic_or_latino(x)
 <tbody>
 <tr>
 <td><code>x</code></td>
-<td>input character representing ethnicity</td>
+<td>input character representing race</td>
 </tr>
 </tbody>
 </table>
@@ -40,26 +40,23 @@ is_hispanic_or_latino(x)
 
 ## Value
 
-boolean representing Ethnic == "Hispanic or Latino"
+boolean representing Race == American Native
 
 
 
 ## Examples
 
 ```r
-is_hispanic_or_latino("HISPANIC OR LATINO")
+is_american_native("AMERICAN INDIAN OR ALASKA NATIVE")
 
-is_hispanic_or_latino("NOT HISPANIC OR LATINO")
+is_american_native("BLACK")
 
-is_hispanic_or_latino("UNKNOWN")
-
-is_hispanic_or_latino(1)
+is_american_native(4)
 ```
 ### Output
 
 ```
 [1] TRUE
-[1] FALSE
 [1] FALSE
 [1] TRUE
 ```
@@ -69,10 +66,10 @@ is_hispanic_or_latino(1)
 
 Other demographics:
 [`ethnicn()`](../ethnicn/),
-[`is_american_native()`](../is_american_native/),
 [`is_asian()`](../is_asian/),
 [`is_black()`](../is_black/),
 [`is_female()`](../is_female/),
+[`is_hispanic_or_latino()`](../is_hispanic_or_latino/),
 [`is_not_hispanic_or_latino()`](../is_not_hispanic_or_latino/),
 [`is_other()`](../is_other/),
 [`is_pacific_islander()`](../is_pacific_islander/),

@@ -1,11 +1,19 @@
 ---
 title: "Calculate Body Surface Area"
-description: "Calculate Body Surface Area"
+description: "Calculate Body Surface Area."
+sidebar:
+  label: "bsa"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Body Surface Area
+
+
+
+
+
 
 ## Usage
 
@@ -15,25 +23,34 @@ bsa(weight, height, method = "Dubois")
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `weight` | weight of a subject (kg) |
-| `height` | height of a subject (cm) |
-| `method` | String to dictate which equation to use. Dubois or Mosteller. |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weight</code></td>
+<td>weight of a subject (kg)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>height of a subject (cm)</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>equation to use: [bsa(method = "Dubois")](../dot-bsa_dubois/) or [bsa(method = "Mosteller")](../dot-bsa_mosteller/).</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 bsa (m^2)
 
-## See Also
 
-Other body_composition: 
-<a href={`${import.meta.env.BASE_URL}reference/aibw`}><code>aibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmic`}><code>bmic</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mosteller_bsa`}><code>mosteller_bsa</code></a>
 
 ## Examples
 
@@ -42,9 +59,36 @@ bsa(70, 170)
 bsa(70, 170, method = "Mosteller")
 bsa(70, 170, method = "Dubois")
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/bsa.txt?raw';
+```
+[1] 1.809708
+attr(,"scicalc_units")
+[1] "m^2"
+[1] 1.818119
+attr(,"scicalc_units")
+[1] "m^2"
+[1] 1.809708
+attr(,"scicalc_units")
+[1] "m^2"
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+The method implementations:
+[bsa(method = "Dubois")](../dot-bsa_dubois/),
+[bsa(method = "Mosteller")](../dot-bsa_mosteller/).
+
+Other body_composition:
+[`aibw()`](../aibw/),
+[`bmi()`](../bmi/),
+[`bmic()`](../bmic/),
+[`ibw()`](../ibw/)
+
+
+## Concept
+
+body_composition
+
+

@@ -1,11 +1,26 @@
 ---
 title: "Calculate Geometric Standard Deviation"
-description: "Calculate Geometric Standard Deviation"
+description: "Calculate Geometric Standard Deviation."
+sidebar:
+  label: "geom_sd"
+pagefind: true
 ---
 
 ## Description
 
 Calculate Geometric Standard Deviation
+
+## Details
+
+The geometric standard deviation is calculated as:
+$$
+GSD = \exp\left(\sqrt{Var[\log(x)]}\right)
+$$
+
+
+
+
+
 
 ## Usage
 
@@ -15,39 +30,55 @@ geom_sd(x, na.rm = FALSE)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `x` | The vector of data you want the geometric sd of. |
-| `na.rm` | a boolean to remove NA values. Default is False |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x</code></td>
+<td>The vector of data you want the geometric sd of.</td>
+</tr>
+<tr>
+<td><code>na.rm</code></td>
+<td>a boolean to remove NA values. Default is False</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The geometric standard deviation is calculated as: 
-
-$$
-GSD = \exp\left(\sqrt{Var[\log(x)]}\right)
-$$
 
 ## Value
 
 the geometric standard deviation of x
 
-## See Also
 
-Other statistics: 
-<a href={`${import.meta.env.BASE_URL}reference/cor_df`}><code>cor_df</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/cv`}><code>cv</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_cv`}><code>geom_cv</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/geom_mean`}><code>geom_mean</code></a>
+
 
 ## Examples
 
 ```r
 geom_sd(c(1, 2, 3, 2, 1))
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/geom_sd.txt?raw';
+```
+[1] 1.620824
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other statistics:
+[`cor_df()`](../cor_df/),
+[`cv()`](../cv/),
+[`geom_cv()`](../geom_cv/),
+[`geom_mean()`](../geom_mean/)
+
+
+## Concept
+
+statistics
+
+

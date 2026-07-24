@@ -1,11 +1,19 @@
 ---
 title: "Convert Ethnicity to Numeric Code"
-description: "Convert Ethnicity to Numeric Code"
+description: "Convert Ethnicity to Numeric Code."
+sidebar:
+  label: "ethnicn"
+pagefind: true
 ---
 
 ## Description
 
 Convert Ethnicity to Numeric Code
+
+
+
+
+
 
 ## Usage
 
@@ -15,26 +23,26 @@ ethnicn(ethnicc)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `ethnicc` | Ethnic character |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ethnicc</code></td>
+<td>Ethnic character</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 the standard yspec numeric value for the inputted Ethnic character
 
-## See Also
 
-Other demographics: 
-<a href={`${import.meta.env.BASE_URL}reference/is_asian`}><code>is_asian</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_black`}><code>is_black</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_female`}><code>is_female</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_hispanic_or_latino`}><code>is_hispanic_or_latino</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_not_hispanic_or_latino`}><code>is_not_hispanic_or_latino</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_other`}><code>is_other</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/is_white`}><code>is_white</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/racen`}><code>racen</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/sexf`}><code>sexf</code></a>
 
 ## Examples
 
@@ -43,11 +51,36 @@ ethnicn("HISPANIC OR LATINO") # 1
 
 ethnicn("NOT HISPANIC OR LATINO") # 0
 
-ethnicn("UNKNOWN") # -999
+ethnicn("UNKNOWN") # default missing value
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/ethnicn.txt?raw';
+```
+[1] 1
+[1] 0
+[1] -999
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other demographics:
+[`is_american_native()`](../is_american_native/),
+[`is_asian()`](../is_asian/),
+[`is_black()`](../is_black/),
+[`is_female()`](../is_female/),
+[`is_hispanic_or_latino()`](../is_hispanic_or_latino/),
+[`is_not_hispanic_or_latino()`](../is_not_hispanic_or_latino/),
+[`is_other()`](../is_other/),
+[`is_pacific_islander()`](../is_pacific_islander/),
+[`is_unspecified()`](../is_unspecified/),
+[`is_white()`](../is_white/),
+[`racen()`](../racen/),
+[`sexf()`](../sexf/)
+
+
+## Concept
+
+demographics
+
+

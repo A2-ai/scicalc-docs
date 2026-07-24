@@ -1,54 +1,102 @@
 ---
 title: "Write Data File with Hash Output"
-description: "Write Data File with Hash Output"
+description: "Write Data File with Hash Output."
+sidebar:
+  label: "write_file_with_hash"
+pagefind: true
 ---
 
 ## Description
 
 Write Data File with Hash Output
 
+
+
+
+
+
 ## Usage
 
 ```r
-write_file_with_hash(data, path, overwrite = FALSE, ...)
+write_file_with_hash(
+  data,
+  path,
+  overwrite = FALSE,
+  ...,
+  algo = "blake3",
+  writer = NULL,
+  force = FALSE
+)
 ```
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `data` | the data object to write to file |
-| `path` | the destination of the file (csv or parquet) |
-| `overwrite` | boolean of whether to overwrite or not. |
-| `...` | additional arguments for digest or write_file. |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>the data object to write to file</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>the destination of the file (csv or parquet)</td>
+</tr>
+<tr>
+<td><code>overwrite</code></td>
+<td>boolean of whether to overwrite or not.</td>
+</tr>
+<tr>
+<td><code>...</code></td>
+<td>additional arguments for digest, write_csv, write_parquet, or `writer`.</td>
+</tr>
+<tr>
+<td><code>algo</code></td>
+<td>hashing algorithm to use, default is "blake3"</td>
+</tr>
+<tr>
+<td><code>writer</code></td>
+<td>optional function used to write the file, called as `writer(data, path, ...)`. Required for file extensions this function doesn't know how to write. For a known extension (csv, parquet), `writer` is ignored unless `force = TRUE`.</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td>if `TRUE`, use `writer` even for a known extension instead of the built-in writer. Must be `FALSE` (the default) when `writer` is not supplied.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Nothing, File is created and hash of created file is printed
 
-## See Also
 
-Other file_io: 
-<a href={`${import.meta.env.BASE_URL}reference/read_csv_with_hash`}><code>read_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_excel_with_hash`}><code>read_excel_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_file_with_hash`}><code>read_file_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_hashed_file`}><code>read_hashed_file</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_parquet_with_hash`}><code>read_parquet_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_pzfx_with_hash`}><code>read_pzfx_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_sas_with_hash`}><code>read_sas_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/read_xpt_with_hash`}><code>read_xpt_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_csv_with_hash`}><code>write_csv_with_hash</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/write_parquet_with_hash`}><code>write_parquet_with_hash</code></a>
 
 ## Examples
 
 ```r
-## Not run: 
+# Not run:
 df <- data.frame(
   "a" = c(1, 2, 3, 4)
   "b" = c("A", "B", "C", "D")
 )
-write_data_with_hash(df, "data.csv")
-
-## End(Not run)
+write_file_with_hash(df, "data.csv")
+write_file_with_hash(df, "data.rds", writer = saveRDS)
 ```
+
+## See Also
+
+Other file_io:
+[`read_file_with_hash()`](../read_file_with_hash/),
+[`read_hashed_file()`](../read_hashed_file/)
+
+
+## Concept
+
+file_io
+
+

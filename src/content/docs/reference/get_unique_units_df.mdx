@@ -1,11 +1,19 @@
 ---
 title: "Get Unique Parameter-Unit Combinations"
-description: "Get Unique Parameter-Unit Combinations"
+description: "Get Unique Parameter-Unit Combinations."
+sidebar:
+  label: "get_unique_units_df"
+pagefind: true
 ---
 
 ## Description
 
 Get Unique Parameter-Unit Combinations
+
+
+
+
+
 
 ## Usage
 
@@ -15,19 +23,30 @@ get_unique_units_df(params, units)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `params` | a column from a dataset with lab parameters |
-| `units` | a column from a dataset with units associated with those parameters |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>params</code></td>
+<td>a column from a dataset with lab parameters</td>
+</tr>
+<tr>
+<td><code>units</code></td>
+<td>a column from a dataset with units associated with those parameters</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 a dataframe with distinct units and parameters with IU replaced to U and mu replaced with u
 
-## See Also
 
-Other unit_checking: 
-<a href={`${import.meta.env.BASE_URL}reference/check_for_unique_units`}><code>check_for_unique_units</code></a>
 
 ## Examples
 
@@ -42,9 +61,27 @@ df <- data.frame(
 )
 get_unique_units_df(df$PARAM, df$UNIT)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/get_unique_units_df.txt?raw';
+```
+  PARAM   UNIT
+1   ALB    g/L
+2   ALT    U/L
+3   AST    U/L
+4    CR umol/L
+5  TBIL umol/L
+6   ALB    U/L
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other unit_checking:
+[`check_for_unique_units()`](../check_for_unique_units/)
+
+
+## Concept
+
+unit_checking
+
+

@@ -1,11 +1,19 @@
 ---
 title: "Convert Bilirubin Concentration Units"
-description: "Convert Bilirubin Concentration Units"
+description: "Convert Bilirubin Concentration Units."
+sidebar:
+  label: "convert_bili"
+pagefind: true
 ---
 
 ## Description
 
 Convert Bilirubin Concentration Units
+
+
+
+
+
 
 ## Usage
 
@@ -15,19 +23,26 @@ convert_bili(bili)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `bili` | bilirubin concentration (µmol/L) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bili</code></td>
+<td>bilirubin concentration (µmol/L)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Bilirubin concentration (mg/dL)
 
-## See Also
 
-Other unit_conversion: 
-<a href={`${import.meta.env.BASE_URL}reference/convert_alb`}><code>convert_alb</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/convert_creat`}><code>convert_creat</code></a>
 
 ## Examples
 
@@ -39,14 +54,37 @@ df <- data.frame(
   BILI = c(10, 15, 25, 40)
 )
 
-df <- df %>%
-  dplyr::group_by(ID) %>%
+df <- df |>
+  dplyr::group_by(ID) |>
   dplyr::mutate(BILIBL = convert_bili(BILI))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/convert_bili.txt?raw';
+```
+[1] 0.9997908
+attr(,"scicalc_units")
+[1] "mg/dL"
+# A tibble: 4 × 3
+# Groups:   ID [4]
+     ID  BILI BILIBL
+  <dbl> <dbl>  <dbl>
+1     1    10  0.585
+2     2    15  0.877
+3     3    25  1.46 
+4     4    40  2.34 
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other unit_conversion:
+[`convert_alb()`](../convert_alb/),
+[`convert_creat()`](../convert_creat/)
+
+
+## Concept
+
+unit_conversion
+
+

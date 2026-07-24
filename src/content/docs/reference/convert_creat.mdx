@@ -1,11 +1,19 @@
 ---
 title: "Convert Serum Creatinine Concentration Units"
-description: "Convert Serum Creatinine Concentration Units"
+description: "Convert Serum Creatinine Concentration Units."
+sidebar:
+  label: "convert_creat"
+pagefind: true
 ---
 
 ## Description
 
 Convert Serum Creatinine Concentration Units
+
+
+
+
+
 
 ## Usage
 
@@ -15,19 +23,26 @@ convert_creat(creat)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `creat` | serum creatinine concentration (µmol/L) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>creat</code></td>
+<td>serum creatinine concentration (µmol/L)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 Serum Creatinine concentration (mg/dL)
 
-## See Also
 
-Other unit_conversion: 
-<a href={`${import.meta.env.BASE_URL}reference/convert_alb`}><code>convert_alb</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/convert_bili`}><code>convert_bili</code></a>
 
 ## Examples
 
@@ -39,14 +54,37 @@ df <- data.frame(
   CREAT = c(70, 90, 110, 130)
 )
 
-df <- df %>%
-  dplyr::group_by(ID) %>%
+df <- df |>
+  dplyr::group_by(ID) |>
   dplyr::mutate(CREATBL = convert_creat(CREAT))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/convert_creat.txt?raw';
+```
+[1] 1.000207
+attr(,"scicalc_units")
+[1] "mg/dL"
+# A tibble: 4 × 3
+# Groups:   ID [4]
+     ID CREAT CREATBL
+  <dbl> <dbl>   <dbl>
+1     1    70   0.792
+2     2    90   1.02 
+3     3   110   1.24 
+4     4   130   1.47 
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other unit_conversion:
+[`convert_alb()`](../convert_alb/),
+[`convert_bili()`](../convert_bili/)
+
+
+## Concept
+
+unit_conversion
+
+

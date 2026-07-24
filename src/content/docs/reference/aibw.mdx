@@ -1,11 +1,32 @@
 ---
 title: "Calculate Adjusted Ideal Body Weight"
 description: "Calculates adjusted ideal body weight, which accounts for excess body weight in obese patients."
+sidebar:
+  label: "aibw"
+pagefind: true
 ---
 
 ## Description
 
-Calculates adjusted ideal body weight, which accounts for excess body weight in obese patients.
+Calculates adjusted ideal body weight, which accounts for excess body weight
+in obese patients.
+
+## Details
+
+Adjusted ideal body weight is calculated as:
+$$
+AIBW = IBW + 0.4 \cdot (TBW - IBW)
+$$
+
+
+where:
+- $IBW$ = ideal body weight (kg)
+- $TBW$ = total (actual) body weight (kg)
+
+
+
+
+
 
 ## Usage
 
@@ -22,40 +43,47 @@ aibw(
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `weight` | baseline weight of subject in kilograms |
-| `height` | baseline height of subject in centimeters |
-| `sexf` | 0 = male, 1 = female, from sexf() |
-| `age` | Numeric vector of baseline age in years. |
-| `allow_ibw_lt_intercept` | logical indicating whether to allow ideal body weight to be lower than intercepts (default TRUE). |
-| `allow_tbw_lt_ibw` | logical indicating whether to allow adjusted ideal body weight to be less than IBW (default TRUE). |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weight</code></td>
+<td>baseline weight of subject in kilograms</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>baseline height of subject in centimeters</td>
+</tr>
+<tr>
+<td><code>sexf</code></td>
+<td>0 = male, 1 = female, from sexf()</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>Numeric vector of baseline age in years.</td>
+</tr>
+<tr>
+<td><code>allow_ibw_lt_intercept</code></td>
+<td>logical indicating whether to allow ideal body weight to be lower than intercepts (default TRUE).</td>
+</tr>
+<tr>
+<td><code>allow_tbw_lt_ibw</code></td>
+<td>logical indicating whether to allow adjusted ideal body weight to be less than IBW (default TRUE).</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-Adjusted ideal body weight is calculated as: 
-
-$$
-AIBW = IBW + 0.4 \cdot (TBW - IBW)
-$$
-
- where: 
-- $IBW$ = ideal body weight (kg)
-- $TBW$ = total (actual) body weight (kg)
 
 ## Value
 
 adjusted ideal body weight (kg)
 
-## See Also
 
-Other body_composition: 
-<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmic`}><code>bmic</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mosteller_bsa`}><code>mosteller_bsa</code></a>
+
 
 ## Examples
 
@@ -70,9 +98,30 @@ df <- data.frame(
 df <- dplyr::mutate(df, AIBW = aibw(WEIGHT, HEIGHT, SEX, AGE))
 df
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/aibw.txt?raw';
+```
+  ID HEIGHT WEIGHT SEX AGE     AIBW
+1  1    160     53   1  18 52.62913
+2  2    170     71   0  27 67.96220
+3  3    175     78   0  34 73.47874
+4  4    165     55   1  33 56.14567
+5  5    180     72   0  29 73.79528
+6  6    150     43   1  30 43.19606
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other body_composition:
+[`bmi()`](../bmi/),
+[`bmic()`](../bmic/),
+[`bsa()`](../bsa/),
+[`ibw()`](../ibw/)
+
+
+## Concept
+
+body_composition
+
+

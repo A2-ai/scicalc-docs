@@ -1,11 +1,38 @@
 ---
 title: "Calculate eGFR Using CKD-EPI 2021 Cystatin Equation"
-description: "Calculate eGFR Using CKD-EPI 2021 Cystatin Equation"
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated) This function is deprecated; use with `met"
+sidebar:
+  label: "ckdepi_2021_egfr_cystatin"
+pagefind: true
 ---
 
 ## Description
 
-Calculate eGFR Using CKD-EPI 2021 Cystatin Equation
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+This function is deprecated; use [`egfr()`](../egfr/) with `method = "CKDEPI 2021 cystatin"`.
+
+## Details
+
+The CKD-EPI 2021 creatinine-cystatin equation:
+$$
+eGFR = 135 \cdot \min(S_{cr}/\kappa, 1)^\alpha \cdot \max(S_{cr}/\kappa, 1)^{-0.544} \cdot \min(S_{cys}/0.8, 1)^{-0.323} \
+\cdot \max(S_{cys}/0.8, 1)^{-0.778} \cdot 0.9961^A \cdot 0.963^F
+$$
+
+
+where:
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $S_{cys}$ = serum cystatin C (mg/L)
+- $\kappa$ = 0.7 (female) or 0.9 (male)
+- $\alpha$ = -0.219 (female) or -0.144 (male)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+
+
+
+
+
 
 ## Usage
 
@@ -15,64 +42,44 @@ ckdepi_2021_egfr_cystatin(sexf, age, creat, cystc)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `sexf` | a boolean representing if the patient is female. |
-| `age` | age of patient in years |
-| `creat` | serum creatinine levels in mg/dL. |
-| `cystc` | serum cystatin C levels in mg/L. |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sexf</code></td>
+<td>a boolean representing if the patient is female.</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>age of patient in years</td>
+</tr>
+<tr>
+<td><code>creat</code></td>
+<td>serum creatinine levels in mg/dL.</td>
+</tr>
+<tr>
+<td><code>cystc</code></td>
+<td>serum cystatin C levels in mg/L.</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The CKD-EPI 2021 creatinine-cystatin equation: 
-
-$$
-eGFR = 135 \cdot \min(S_{cr}/\kappa, 1)^\alpha \cdot \max(S_{cr}/\kappa, 1)^{-0.544} \cdot \min(S_{cys}/0.8, 1)^{-0.323} \\
-\cdot \max(S_{cys}/0.8, 1)^{-0.778} \cdot 0.9961^A \cdot 0.963^F
-$$
-
- where: 
-- $S_{cr}$ = serum creatinine (mg/dL)
-- $S_{cys}$ = serum cystatin C (mg/L)
-- $\kappa$ = 0.7 (female) or 0.9 (male)
-- $\alpha$ = -0.219 (female) or -0.144 (male)
-- $A$ = age (years)
-- $F$ = 1 (female) or 0 (male)
 
 ## Value
 
 eGFR in mL/min/1.73 m^2
 
-## See Also
 
-Other renal_function: 
-<a href={`${import.meta.env.BASE_URL}reference/aegfr`}><code>aegfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2009_egfr`}><code>ckdepi_2009_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ckdepi_2021_egfr`}><code>ckdepi_2021_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/crcl`}><code>crcl</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/egfr`}><code>egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mdrd_egfr`}><code>mdrd_egfr</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/rfc`}><code>rfc</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/schwartz_egfr`}><code>schwartz_egfr</code></a>
+
 
 ## Examples
 
 ```r
-e <- ckdepi_2021_egfr_cystatin(TRUE, 24, 1, 2)
-
-df <- data.frame(
-  "SEXF" = c(TRUE, FALSE, TRUE, FALSE),
-  "RACEB" = c(FALSE, FALSE, TRUE, FALSE),
-  "AGE" = c(24, 24, 23, 24),
-  "CREAT" = c(1, 1, 2, 1),
-  "CYSTC" = c(0.4, 0.8, 1, 2)
-)
-df <- dplyr::mutate(df, egfr = ckdepi_2021_egfr_cystatin(SEXF, AGE, CREAT, CYSTC))
-df
+e <- egfr(TRUE, FALSE, 24, 1, cystc = 2, method = "CKDEPI 2021 cystatin")
 ```
 
-### Output
 
-import exampleOutput from '/examples/text/ckdepi_2021_egfr_cystatin.txt?raw';
-
-<pre style="overflow-x: auto;">{exampleOutput}</pre>

@@ -1,0 +1,36 @@
+---
+title: "CKD-EPI 2009 creatinine eGFR equation"
+description: "The equation used by with `method = \"CKDEPI 2009\"`."
+sidebar:
+  label: ".egfr_ckdepi_2009"
+pagefind: true
+---
+
+## Description
+
+The equation used by [`egfr()`](../egfr/) with `method = "CKDEPI 2009"`.
+
+## Details
+
+The CKD-EPI 2009 equation:
+$$
+eGFR = 141 \cdot \min(S_{cr}/\kappa, 1)^\alpha \cdot \max(S_{cr}/\kappa, 1)^{-1.209} \cdot 0.993^A \cdot 1.018^F \cdot 1.159^B
+$$
+
+
+where:
+- $S_{cr}$ = serum creatinine (mg/dL)
+- $\kappa$ = 0.7 (female) or 0.9 (male)
+- $\alpha$ = -0.329 (female) or -0.411 (male)
+- $A$ = age (years)
+- $F$ = 1 (female) or 0 (male)
+- $B$ = 1 (Black) or 0 (other)
+
+
+
+
+
+
+
+
+

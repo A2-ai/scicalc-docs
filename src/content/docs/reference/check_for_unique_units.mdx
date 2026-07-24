@@ -1,11 +1,19 @@
 ---
 title: "Check for Unique Units per Parameter"
-description: "Check for Unique Units per Parameter"
+description: "Check for Unique Units per Parameter."
+sidebar:
+  label: "check_for_unique_units"
+pagefind: true
 ---
 
 ## Description
 
 Check for Unique Units per Parameter
+
+
+
+
+
 
 ## Usage
 
@@ -15,19 +23,30 @@ check_for_unique_units(params, units)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `params` | a column from a dataset with lab parameters |
-| `units` | a column from a dataset with units associated with those parameters |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>params</code></td>
+<td>a column from a dataset with lab parameters</td>
+</tr>
+<tr>
+<td><code>units</code></td>
+<td>a column from a dataset with units associated with those parameters</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 ## Value
 
 a boolean
 
-## See Also
 
-Other unit_checking: 
-<a href={`${import.meta.env.BASE_URL}reference/get_unique_units_df`}><code>get_unique_units_df</code></a>
 
 ## Examples
 
@@ -42,9 +61,21 @@ df <- data.frame(
 )
 check_for_unique_units(df$PARAM, df$UNIT)
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/check_for_unique_units.txt?raw';
+```
+[1] FALSE
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## See Also
+
+Other unit_checking:
+[`get_unique_units_df()`](../get_unique_units_df/)
+
+
+## Concept
+
+unit_checking
+
+

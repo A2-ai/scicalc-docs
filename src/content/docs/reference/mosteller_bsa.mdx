@@ -1,11 +1,33 @@
 ---
 title: "Calculate Body Surface Area Using Mosteller Equation"
-description: "Calculate Body Surface Area Using Mosteller Equation"
+description: "[![[Deprecated]](/figures/lifecycle-deprecated. svg)](https://lifecycle. r-lib. org/articles/stages. html#deprecated) This function is deprecated; use with `met"
+sidebar:
+  label: "mosteller_bsa"
+pagefind: true
 ---
 
 ## Description
 
-Calculate Body Surface Area Using Mosteller Equation
+[![[Deprecated]](/figures/lifecycle-deprecated.svg)](https://lifecycle.r-lib.org/articles/stages.html#deprecated)
+
+This function is deprecated; use [`bsa()`](../bsa/) with `method = "Mosteller"`.
+
+## Details
+
+The Mosteller equation for BSA:
+$$
+BSA = \sqrt{\frac{W \cdot H}{3600}}
+$$
+
+
+where:
+- $W$ = weight (kg)
+- $H$ = height (cm)
+
+
+
+
+
 
 ## Usage
 
@@ -15,45 +37,36 @@ mosteller_bsa(weight, height)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `weight` | weight of subject (kg) |
-| `height` | height of subject (cm) |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weight</code></td>
+<td>weight of subject (kg)</td>
+</tr>
+<tr>
+<td><code>height</code></td>
+<td>height of subject (cm)</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-The Mosteller equation for BSA: 
-
-$$
-BSA = \sqrt{\frac{W \cdot H}{3600}}
-$$
-
- where: 
-- $W$ = weight (kg)
-- $H$ = height (cm)
 
 ## Value
 
 the body surface area (m^2)
 
-## See Also
 
-Other body_composition: 
-<a href={`${import.meta.env.BASE_URL}reference/aibw`}><code>aibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmic`}><code>bmic</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>
+
 
 ## Examples
 
 ```r
-mosteller_bsa(70, 170)
+mosteller_bsa <- bsa(70, 170, method = "Mosteller")
 ```
 
-### Output
 
-import exampleOutput from '/examples/text/mosteller_bsa.txt?raw';
-
-<pre style="overflow-x: auto;">{exampleOutput}</pre>

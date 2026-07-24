@@ -1,11 +1,37 @@
 ---
 title: "Categorize Body Mass Index"
-description: "Categorizes individuals based on their Body Mass Index (BMI) according to standard WHO obesity classification criteria."
+description: "Categorizes individuals based on their Body Mass Index (BMI) according to standard WHO obesity classification criteria. Validates age to ensure appropriate appl"
+sidebar:
+  label: "bmic"
+pagefind: true
 ---
 
 ## Description
 
-Categorizes individuals based on their Body Mass Index (BMI) according to standard WHO obesity classification criteria. Validates age to ensure appropriate application of adult BMI categories.
+Categorizes individuals based on their Body Mass Index (BMI) according to
+standard WHO obesity classification criteria. Validates age
+to ensure appropriate application of adult BMI categories.
+
+## Details
+
+**BMI Categories:**
+- 1: Underweight: BMI \< 18.5 kg/m²
+- 2: Normal weight: BMI 18.5 to \< 25 kg/m²
+- 3: Overweight: BMI 25 to \< 30 kg/m²
+- 4: Obese class 1: BMI 30 to \< 35 kg/m²
+- 5: Obese class 2: BMI 35 to \< 40 kg/m²
+- 6: Obese class 3: BMI >= 40 kg/m²
+
+
+**Age Considerations:**
+The function will warn if any individuals are under
+18 years old, as standard adult BMI categories may not be appropriate for
+children and adolescents.
+
+
+
+
+
 
 ## Usage
 
@@ -15,45 +41,43 @@ bmic(bmi, age)
 
 ## Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `bmi` | Numeric vector of baseline Body Mass Index values (kg/m²) |
-| `age` | Numeric vector of baseline age in years. the function will issue warnings for individuals under 18 years old, as adult BMI categories may not be appropriate for pediatric populations |
+<div class="arg-table">
+<table>
+<thead>
+<tr><th>Argument</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bmi</code></td>
+<td>Numeric vector of baseline Body Mass Index values (kg/m²)</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td>Numeric vector of baseline age in years. the function will issue warnings for individuals under 18 years old, as adult BMI categories may not be appropriate for pediatric populations</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-## Details
-
-**BMI Categories:**
-
-- 1: Underweight: BMI \< 18.5 kg/m²
-
-- 2: Normal weight: BMI 18.5 to \< 25 kg/m²
-
-- 3: Overweight: BMI 25 to \< 30 kg/m²
-
-- 4: Obese: BMI ≥ 30 kg/m²
-
-**Age Considerations:** The function will warn if any individuals are under 18 years old, as standard adult BMI categories may not be appropriate for children and adolescents.
 
 ## Value
 
-Integer vector of obesity categories (1-4). Returns `-999` for missing BMI values.
+Integer vector of obesity categories (1-6). Returns the value of
+`getOption("scicalc.missing_value")` (default `-999`) for
+missing BMI values.
 
-## References
 
-World Health Organization. https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight
 
-## See Also
 
-<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a> for calculating BMI from weight and height,
-<a href={`${import.meta.env.BASE_URL}reference/agec`}><code>agec</code></a> for age categorization
+## Custom bands
 
-Other body_composition: 
-<a href={`${import.meta.env.BASE_URL}reference/aibw`}><code>aibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bmi`}><code>bmi</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/bsa`}><code>bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/dubois_bsa`}><code>dubois_bsa</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/ibw`}><code>ibw</code></a>,
-<a href={`${import.meta.env.BASE_URL}reference/mosteller_bsa`}><code>mosteller_bsa</code></a>
+Set `options(scicalc.bmic_config = )` to a data frame of custom bands
+with columns `label`, `min` (lower bound), and `code` to
+replace the WHO bands entirely. Bands are half-open `[min, next min)`
+with the top band open-ended; BMI values below the lowest `min` return
+the missing value. The `category_standard` attribute is then "custom".
+
+
 
 ## Examples
 
@@ -71,9 +95,39 @@ dplyr::mutate(
   BMIC = bmic(BMI, AGE)
 )
 ```
-
 ### Output
 
-import exampleOutput from '/examples/text/bmic.txt?raw';
+```
+  ID AGE WEIGHT HEIGHT      BMI BMIC
+1  1  25     60    165 22.03857    2
+2  2  45     80    175 26.12245    3
+3  3  17     70    170 24.22145    2
+4  4  55     90    180 27.77778    3
+5  5  30     75    160 29.29687    3
+6  6  65     85    175 27.75510    3
+```
 
-<pre style="overflow-x: auto;">{exampleOutput}</pre>
+
+## References
+
+World Health Organization.
+https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight
+
+
+## See Also
+
+[`bmi`](../bmi/) for calculating BMI from weight and height,
+[`agec`](../agec/) for age categorization
+
+Other body_composition:
+[`aibw()`](../aibw/),
+[`bmi()`](../bmi/),
+[`bsa()`](../bsa/),
+[`ibw()`](../ibw/)
+
+
+## Concept
+
+body_composition
+
+

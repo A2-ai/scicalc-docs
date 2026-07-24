@@ -1,16 +1,21 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { remarkBaseUrl } from "./remark-base-url.mjs";
 import { starlightKatex } from "starlight-katex";
 
 // https://astro.build/config
 export default defineConfig({
   site: process.env.ASTRO_SITE || "http://localhost",
   base: process.env.ASTRO_BASE || "/",
+  trailingSlash: "always",
+  markdown: {
+    remarkPlugins: [remarkBaseUrl],
+  },
   integrations: [
     starlight({
       title: "scicalc",
-      customCss: ["./src/styles/custom.css"],
+      customCss: ["./src/styles/starlightr.css", "./src/styles/custom.css"],
       plugins: [starlightKatex()],
       components: { SiteTitle: "./src/components/VersionSelect.astro" },
       logo: { src: "./src/assets/logo.png", alt: "Logo" },
@@ -23,7 +28,8 @@ export default defineConfig({
         {
           label: "Getting Started",
           items: [
-            { label: "scicalc", slug: "articles/scicalc" }
+            { label: "scicalc", slug: "articles/scicalc" },
+            { label: "categorical-config", slug: "articles/categorical-config" }
           ]
         }
       ]
@@ -48,9 +54,12 @@ export default defineConfig({
             { label: "is_black", slug: "reference/is_black" },
             { label: "is_white", slug: "reference/is_white" },
             { label: "is_other", slug: "reference/is_other" },
-            { label: "racen", slug: "reference/racen" },
+            { label: "is_american_native", slug: "reference/is_american_native" },
+            { label: "is_pacific_islander", slug: "reference/is_pacific_islander" },
+            { label: "is_unspecified", slug: "reference/is_unspecified" },
             { label: "is_hispanic_or_latino", slug: "reference/is_hispanic_or_latino" },
             { label: "is_not_hispanic_or_latino", slug: "reference/is_not_hispanic_or_latino" },
+            { label: "racen", slug: "reference/racen" },
             { label: "ethnicn", slug: "reference/ethnicn" },
             { label: "is_female", slug: "reference/is_female" },
             { label: "sexf", slug: "reference/sexf" }
@@ -66,18 +75,11 @@ export default defineConfig({
             { label: "ibw", slug: "reference/ibw" },
             { label: "aibw", slug: "reference/aibw" },
             { label: "bsa", slug: "reference/bsa" },
-            { label: "dubois_bsa", slug: "reference/dubois_bsa" },
-            { label: "mosteller_bsa", slug: "reference/mosteller_bsa" },
             { label: "crcl", slug: "reference/crcl" },
             { label: "rfc", slug: "reference/rfc" },
             { label: "hfc", slug: "reference/hfc" },
             { label: "egfr", slug: "reference/egfr" },
-            { label: "aegfr", slug: "reference/aegfr" },
-            { label: "ckdepi_2021_egfr", slug: "reference/ckdepi_2021_egfr" },
-            { label: "ckdepi_2009_egfr", slug: "reference/ckdepi_2009_egfr" },
-            { label: "ckdepi_2021_egfr_cystatin", slug: "reference/ckdepi_2021_egfr_cystatin" },
-            { label: "mdrd_egfr", slug: "reference/mdrd_egfr" },
-            { label: "schwartz_egfr", slug: "reference/schwartz_egfr" }
+            { label: "aegfr", slug: "reference/aegfr" }
           ]
         },
         {
@@ -103,6 +105,13 @@ export default defineConfig({
             { label: "cor_df", slug: "reference/cor_df" },
             { label: "round_like", slug: "reference/round_like" }
           ]
+        },
+        {
+          label: "Utilities",
+          collapsed: true,
+          items: [
+            { label: "is_missing_value", slug: "reference/is_missing_value" }
+          ]
         }
       ]
     },
@@ -111,4 +120,3 @@ export default defineConfig({
     })
   ]
 });
-
