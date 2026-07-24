@@ -1,0 +1,24 @@
+[1] 1 2 3 4
+attr(,"category_standard")
+[1] "FDA" 
+[1] 1 2 3 4 5
+attr(,"category_standard")
+[1] "KDIGO" 
+[1] 2
+attr(,"category_standard")
+[1] "FDA" 
+  ID SEX AGE CREAT WEIGHT HEIGHT  RACE      BSA      EGFR     AEGFR
+1  1   F  65   1.2     70    165 WHITE 1.770960  50.23467  51.42405
+2  2   M  45   0.9     80    175 BLACK 1.956060 107.33541 121.36097
+3  3   F  70   1.5     60    160 OTHER 1.622063  37.25688  34.93236
+4  4   M  50   1.1     85    180 ASIAN 2.048528  81.78201  96.83973
+  BRFC_CLINICAL BRFC_REGULATORY_REL BRFC_REGULATORY_ABS
+1             3                   3                   3
+2             1                   1                   1
+3             3                   3                   3
+4             2                   1                   1 
+  ID SEX AGE CREAT WEIGHT HEIGHT  RACE
+1  1   F  65   1.2     70    165 WHITE
+2  2   M  45   0.9     80    175 BLACK
+3  3   F  70   1.5     60    160 OTHER
+4  4   M  50   1.1     85    180 ASIAN 

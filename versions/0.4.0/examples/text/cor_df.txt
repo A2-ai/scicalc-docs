@@ -1,0 +1,12 @@
+# A tibble: 3 × 4
+  name1 name2   CORR ABSCORR
+  <chr> <chr>  <dbl>   <dbl>
+1 A     B      0.806   0.806
+2 B     C     -0.134   0.134
+3 A     C     -0.129   0.129 
+# A tibble: 3 × 4
+  name1 name2   CORR ABSCORR
+  <chr> <chr>  <dbl>   <dbl>
+1 A     B      0.806   0.806
+2 B     C     -0.134   0.134
+3 A     C     -0.129   0.129 

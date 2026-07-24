@@ -1,0 +1,11 @@
+[1] 4
+attr(,"units")
+[1] "g/dL" 
+# A tibble: 4 × 3
+# Groups:   ID [4]
+     ID   ALB ALBBL
+  <dbl> <dbl> <dbl>
+1     1    35   3.5
+2     2    40   4  
+3     3    28   2.8
+4     4    45   4.5 

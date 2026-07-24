@@ -1,0 +1,11 @@
+[1] 98.84393
+attr(,"units")
+[1] "mL/min" 
+# A tibble: 4 × 4
+# Groups:   ID [4]
+     ID  EGFR   BSA AEGFR
+  <dbl> <dbl> <dbl> <dbl>
+1     1    80  1.6   74.0
+2     2    95  1.85 102. 
+3     3    70  1.75  70.8
+4     4    60  2     69.4 
